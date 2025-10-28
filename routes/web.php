@@ -7,6 +7,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('home');
+})->name('Home');
+
+Route::get('/Artists/(Albums)', function () {
+    return view('Artists', ['Albums' => App\Models\Artists::with('albums')->get()
+    ]);
+})->name('Artists');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
