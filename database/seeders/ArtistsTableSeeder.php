@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Artists;
+use Illuminate\Support\Facades\DB;
 
 class ArtistsTableSeeder extends Seeder
 {
@@ -12,30 +14,30 @@ class ArtistsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $a = new \App\Models\Artists;
-        $a->name = 'Interpol';
-        $a->genre = 'Post-punk revival';
-        $a->save();
 
-        $a = new \App\Models\Artists;
-        $a->name = 'The Strokes';
-        $a->genre = 'Garage rock revival';
-        $a->save();
+        if (DB::table('artists')->count() === 0) { 
+             Artists::create([
+            'name' => 'Interpol',
+            'genre' => 'Post-punk revival',
+             ]);
 
-        $a = new \App\Models\Artists;
-        $a->name = 'The White Stripes';
-        $a->genre = 'Alternative rock';
-        $a->save();
+             Artists::create([
+             'name' => 'The Strokes',
+             'genre' => 'Garage rock revival',
+             ]);       
 
-        $a = new \App\Models\Artists;
-        $a->name = 'Madvillain';
-        $a->genre = 'Hip hop';
-        $a->save();
+             Artists::create([
+            'name' => 'The White Stripes',
+            'genre' => 'Alternative rock',
+            ]);
 
-        $a = new \App\Models\Artists;
-        $a->name = 'Roy Orbison';
-        $a->genre = 'Rock and roll';
-        $a->save();
+            Artists::create([
+            'name' => 'Roy Orbison',
+            'genre' => 'Rock and roll',
+            ]);
+
+        }
+      
 
         //
     }
