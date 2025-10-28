@@ -1,25 +1,20 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/about', function () {
-    return "This is the about page.";
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/home', function () {
-    return "This is the home page.";
-});
-
-Route::redirect('/home', '/about');
-
-Route::get('user/{name}', function ($name=null) {
-    return "Hello, " . ($name ?? 'Guest');
-});
-
-Route::get('/show/{input_string}', function (string $inputString) {
-    return 'You wrote: ' . $inputString;
-});
+require __DIR__.'/auth.php';
