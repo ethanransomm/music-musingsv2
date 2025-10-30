@@ -9,7 +9,7 @@
     <h1>Albums</h1>
 
     @if ($albums->isEmpty())
-        <p>No artists or albums found for this query. Check the URL and database data.</p>
+        <p>No artists or albums found</p>
     @else
         <ul>
             @foreach ($albums as $artist)
@@ -22,7 +22,7 @@
                             @foreach ($album->songs as $song)
                                 <li>
                                 {{ $song->title }} - Duration:
-                                {{ number_format($song->duration / 60, 2) }}
+                                {{ gmdate("i:s", $song->duration) }}
                                 </li>
                             @endforeach
                         @endforeach

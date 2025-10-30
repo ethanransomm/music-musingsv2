@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>All Artists</title>
 </head>
+
 <body>
     <h1>All Artists</h1>
 
@@ -12,11 +14,12 @@
         <ul>
             @foreach ($artists as $artist)
                 <li>
-                   <strong>{{ $artist->artistName }}</strong> - Albums: {{ $artist->albums->pluck('title')->implode(', ') }} -
-                   Genre: {{ $artist->genre }} 
+                    <strong><a href="/Artist/{{ rawurlencode($artist->artistName) }}">
+                            {{ $artist->artistName }} </a></strong>
                 </li>
             @endforeach
         </ul>
     @endif
 </body>
+
 </html>
