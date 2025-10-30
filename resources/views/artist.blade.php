@@ -1,26 +1,31 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Music Musings - Albums</title>
-    </head>
-    <body>
-        <h1>Albums</h1>
+
+<head>
+    <title>Music Musings - Albums</title>
+</head>
+
+<body>
+    <h1>Albums</h1>
+
+    @if ($albums->isEmpty())
+        <p>No artists or albums found for this query. Check the URL and database data.</p>
+    @else
         <ul>
-            @foreach ($albums as $artists) 
-                {{-- Access the 'name' property directly on the Artist object --}}
-                <li><strong>{{ $artists->artistName }}</strong>
+            @foreach ($albums as $artist)
+                <li>
+                    <strong>{{ $artist->artistName }}</strong>
                     <ul>
-                        @foreach ($artists->album as $album)
-                            <li>{{ $album->title }} ({{ $album->release_year }})</li>
-                            <li>Genre: {{ $album->genre }}</li>
+                        @foreach ($artist->albums as $album)
+                            <li>{{ $album->title }} ({{ $album->release_date }})</li>
+                            <li>{{ $album->genre }}</li>
                         @endforeach
                     </ul>
                 </li>
             @endforeach
         </ul>
-        
-        @if ($Album->isEmpty())
-            <li>No artists or albums found for this query. Check the URL and database data.</li>
-        @endif
-    </body>
-</html>
+    @endif
 
+</body>
+
+</html>

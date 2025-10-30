@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ArtistController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Artist;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -12,11 +15,15 @@ Route::get('/home', function () {
     return view('home');
 })->name('Home');
 
+Route::get('/Artists', [ArtistController::class, 'index'])->name('artists.index');
+
 Route::get('/Artist/{artistName}', function ($artistName) {
     $artist = Artist::where('artistName', $artistName)->with('albums')->first();
-    $artists = $artist ? collect([$artist]) : collect([]);
-   return view('artist', ['Album' => $artist]);
-})->name('Artists');
+    $artistsCollection = $artist ? collect([$artist]) : collect([]);
+    return view('artist', ['albums' => $artistsCollection]);
+})->name('artist.show');
+
+
 
 
 Route::get('/dashboard', function () {
