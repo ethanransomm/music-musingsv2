@@ -17,8 +17,14 @@
                     <strong>{{ $artist->artistName }}</strong>
                     <ul>
                         @foreach ($artist->albums as $album)
-                            <li>{{ $album->title }} ({{ $album->release_date }})</li>
+                            <strong><li>{{ $album->title }} </strong> ({{ $album->release_date }})</li>
                             <li>{{ $album->genre }}</li>
+                            @foreach ($album->songs as $song)
+                                <li>
+                                {{ $song->title }} - Duration:
+                                {{ number_format($song->duration / 60, 2) }}
+                                </li>
+                            @endforeach
                         @endforeach
                     </ul>
                 </li>

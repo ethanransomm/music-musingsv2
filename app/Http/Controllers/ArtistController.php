@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Artist;
+use App\Models\Album;
 use Illuminate\Http\Request;
 
 class ArtistController extends Controller
@@ -14,7 +15,7 @@ class ArtistController extends Controller
     {
         //
         $artists = Artist::all();
-        return view("artists.index", ["artists"=> $artists]);
+        return view("artists.index", ["artists"=> $artists], ["albums"=> Album::all()]);
     }
 
     /**

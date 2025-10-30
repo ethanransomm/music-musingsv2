@@ -12,7 +12,8 @@
         <ul>
             @foreach ($artists as $artist)
                 <li>
-                    <strong>{{ $artist->artistName }}</strong> - Genre: {{ $artist->genre }}
+                   <strong>{{ $artist->artistName }}</strong> - Albums: {{ $artist->albums->pluck('title')->implode(', ') }} -
+                   Genre: {{ $artist->genre }} 
                 </li>
             @endforeach
         </ul>
