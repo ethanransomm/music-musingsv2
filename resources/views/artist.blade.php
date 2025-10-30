@@ -5,12 +5,13 @@
     <body>
         <h1>Albums</h1>
         <ul>
-            @foreach ($Album as $artist) 
+            @foreach ($albums as $artists) 
                 {{-- Access the 'name' property directly on the Artist object --}}
-                <li><strong>{{ $artist->artistName }}</strong>
+                <li><strong>{{ $artists->artistName }}</strong>
                     <ul>
-                        @foreach ($artist->albums as $album)
+                        @foreach ($artists->album as $album)
                             <li>{{ $album->title }} ({{ $album->release_year }})</li>
+                            <li>Genre: {{ $album->genre }}</li>
                         @endforeach
                     </ul>
                 </li>

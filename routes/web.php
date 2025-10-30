@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Artist;
 
 Route::get('/', function () {
     return view('welcome');
@@ -11,9 +12,10 @@ Route::get('/home', function () {
     return view('home');
 })->name('Home');
 
-Route::get('/Artist/{title}', function ($title) {
-    $albums = DB::table('albums')->where('title', $title)->get();
-    return view('artist', ['Album' => $albums]);
+Route::get('/Artist/{artistName}', function ($artistName) {
+    $artist = Artist::where('artistName', $artistName)->with('albums')->first();
+    $artists = $artist ? collect([$artist]) : collect([]);
+   return view('artist', ['Album' => $artist]);
 })->name('Artists');
 
 
