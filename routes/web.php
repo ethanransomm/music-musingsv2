@@ -11,9 +11,9 @@ Route::get('/home', function () {
     return view('home');
 })->name('Home');
 
-Route::get('/Artists/{title}', function ($title) {
+Route::get('/Artist/{title}', function ($title) {
     $albums = DB::table('albums')->where('title', $title)->get();
-    return view('artists', ['Albums' => $albums]);
+    return view('artist', ['Album' => $albums]);
 })->name('Artists');
 
 

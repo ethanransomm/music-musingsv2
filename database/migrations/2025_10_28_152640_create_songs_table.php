@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title');
-            $table->string('artist');
-            $table->string('albumName')->nullable();
-            $table->integer('duration')->nullable(); // duration in seconds
+            $table->foreignId('artist_id')->constrained('artists')->cascadeOnDelete();
+            $table->foreignId('album_id')->constrained('albums')->cascadeOnDelete();
+            $table->integer('duration')->nullable();
             
         });
     }

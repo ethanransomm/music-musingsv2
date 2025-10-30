@@ -1,13 +1,13 @@
 <html>
     <head>
-        <title>Artists' Albums</title>
+        <title>Music Musings - Albums</title>
     </head>
     <body>
-        <h1>Artists' Albums</h1>
+        <h1>Albums</h1>
         <ul>
-            @foreach ($Albums as $artist) 
+            @foreach ($Album as $artist) 
                 {{-- Access the 'name' property directly on the Artist object --}}
-                <li><strong>{{ $artist->name }}</strong>
+                <li><strong>{{ $artist->artistName }}</strong>
                     <ul>
                         @foreach ($artist->albums as $album)
                             <li>{{ $album->title }} ({{ $album->release_year }})</li>
@@ -17,7 +17,7 @@
             @endforeach
         </ul>
         
-        @if ($Albums->isEmpty())
+        @if ($Album->isEmpty())
             <li>No artists or albums found for this query. Check the URL and database data.</li>
         @endif
     </body>

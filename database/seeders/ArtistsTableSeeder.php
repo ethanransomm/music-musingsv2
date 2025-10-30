@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Artists;
+use App\Models\Artist;
 use Illuminate\Support\Facades\DB;
 
 class ArtistsTableSeeder extends Seeder
@@ -15,25 +15,33 @@ class ArtistsTableSeeder extends Seeder
     public function run(): void
     {
 
-        if (DB::table('artists')->count() === 0) { 
-             Artists::create([
-            'name' => 'Interpol',
+        if (Artist::count() > 0) { 
+            return; 
+        }
+
+             Artist::create([
+            'artistName' => 'Interpol',
             'genre' => 'Post-punk revival',
              ]);
 
-             Artists::create([
-             'name' => 'The Strokes',
+             Artist::create([
+             'artistName' => 'The Strokes',
              'genre' => 'Garage rock revival',
              ]);       
 
-             Artists::create([
-            'name' => 'The White Stripes',
+             Artist::create([
+            'artistName' => 'The White Stripes',
             'genre' => 'Alternative rock',
             ]);
 
-            Artists::create([
-            'name' => 'Roy Orbison',
+            Artist::create([
+            'artistName' => 'Roy Orbison',
             'genre' => 'Rock and roll',
+            ]);
+
+            Artist::create([
+            'artistName' => 'Madvillain',
+            'genre' => 'Hip hop',
             ]);
 
         }
@@ -41,4 +49,3 @@ class ArtistsTableSeeder extends Seeder
 
         //
     }
-}

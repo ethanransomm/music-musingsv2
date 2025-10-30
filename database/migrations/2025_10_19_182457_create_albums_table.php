@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title');
-            $table->string('artist');
             $table->date('release_date');
             $table->string('genre');
+            $table->foreignId('artist_id')->constrained('artists')->cascadeOnDelete();
         });
     }
 

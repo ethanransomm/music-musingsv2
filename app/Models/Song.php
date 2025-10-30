@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Songs extends Model
+class Song extends Model
 {
 
     public function album()
@@ -17,7 +17,7 @@ class Songs extends Model
         return $this->hasOneThrough(
             Artists::class,
             Albums::class,
-            'id', // Foreign key on Albums table...
+            'artist_id', // Foreign key on Albums table...
             'id', // Foreign key on Artists table...
             'album_id', // Local key on Songs table...
             'artist_id' // Local key on Albums table...
