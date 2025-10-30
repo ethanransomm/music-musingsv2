@@ -4,18 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Artist;
 
-class Albums extends Model
+class Album extends Model
 {
     use HasFactory;
 
     public function artist()
     {
-        return $this->belongsTo(Artists::class);
+        return $this->belongsTo(Artist::class);
     }
 
     public function songs()
     {
-        return $this->hasMany(Songs::class);
+        return $this->hasMany(Song::class);
     }
 }

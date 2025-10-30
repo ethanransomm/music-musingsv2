@@ -11,9 +11,9 @@ Route::get('/home', function () {
     return view('home');
 })->name('Home');
 
-Route::get('/Artists/(Albums)', function () {
-    return view('Artists', ['Albums' => App\Models\Artists::with('albums')->get()
-    ]);
+Route::get('/Artists/{title}', function ($title) {
+    $albums = DB::table('albums')->where('title', $title)->get();
+    return view('artists', ['Albums' => $albums]);
 })->name('Artists');
 
 

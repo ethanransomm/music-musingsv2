@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('artist');
-            $table->string('album')->nullable();
+            $table->string('albumName')->nullable();
             $table->integer('duration')->nullable(); // duration in seconds
             
         });
