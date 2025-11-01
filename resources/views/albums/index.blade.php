@@ -1,8 +1,5 @@
 @extends('layouts.app')
 
-@section('All Albums')
-
-
 @section('content')
 
 

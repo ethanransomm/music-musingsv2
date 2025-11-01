@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Artist Albums')
-
 @section('content')
     @if ($albums->isEmpty())
         <p>No artists or albums found</p>
