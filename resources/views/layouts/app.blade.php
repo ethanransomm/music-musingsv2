@@ -18,7 +18,8 @@
             <a href="/home">Home</a> |
             <a href="/artists">Artists</a> |
             <a href="/albums">Albums</a> |
-            <a href="/about">About</a>
+            <a href="/about">About</a> |
+            <a href="/forum">Forum</a>
 
             @auth
             <div class="flex items-center space-x-3">
