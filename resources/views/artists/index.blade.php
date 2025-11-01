@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
+@section('All Artists')
 
-<head>
-    <title>All Artists</title>
-</head>
+@section('content')
 
-<body>
-    <h1>All Artists</h1>
+ <h1>All Artists</h1>
 
     @if ($artists->isEmpty())
         <p>No artists found in the database.</p>
@@ -20,6 +17,5 @@
             @endforeach
         </ul>
     @endif
-</body>
 
-</html>
+@endsection

@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
 
-<head>
-    <title>All Albums</title>
-</head>
-<body>
+@section('All Albums')
+
+
+@section('content')
+
+
     <h1>All Albums</h1>
         <ul>
             @foreach ($albums as $album)
@@ -14,7 +15,5 @@
             @endforeach
         </ul>
 
-        <a href= "{{ route('albums.create') }}">Create Album </a>
-</body>
-
-</html>
+        <a href= "{{ route('albums.create') }}">Add an Album </a>
+@endsection

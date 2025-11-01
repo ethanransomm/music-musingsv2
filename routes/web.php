@@ -26,15 +26,31 @@ Route::get('/artist/{artistName}', function ($artistName) {
     return view('artist', ['albums' => $artistsCollection]);
 })->name('artist.show');
 
+
 Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
+
+Route::get('/album/create', [AlbumController::class, 'create'])->name('albums.create'); 
+
+Route::post('/album', [AlbumController::class, 'store'])->name('albums.store');
 
 Route::get('/album/{title}', function ($title) {
     $album = Album::where('title', $title)->with('songs', 'artist')->first();
     return view('album', ['album' => $album]);
 })->name('album.show');
 
-Route::get('/album/create', [AlbumController::class,'index'])->name('album.create');
-Route::post('/album/create', [AlbumController::class,'store'])->name('album.store');
+
+
+
+Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
+
+
+Route::get('/album/create', [AlbumController::class,'create'])->name('albums.create');
+Route::post('/album', [AlbumController::class,'store'])->name('albums.store');
+
+Route::get('/album/{title}', function ($title) {
+    $album = Album::where('title', $title)->with('songs', 'artist')->first();
+    return view('album', ['album' => $album]);
+})->name('album.show');
 
 
 Route::get('/dashboard', function () {

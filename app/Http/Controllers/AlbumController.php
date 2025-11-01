@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Album;
+use App\Models\Artist;
 use App\Models\Song;
 
 class AlbumController extends Controller
@@ -24,7 +25,8 @@ class AlbumController extends Controller
      */
     public function create()
     {
-        return view("albums.create");
+        $artists = Artist::all();
+        return view("albums.create", compact("artists"));
         //
     }
 
@@ -33,6 +35,14 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validateddata = $request -> validate ([
+            'title' => 'required|string|max:255',
+            'release_date' => 'required|date',
+            'artist_id' => 'required|exists:artists,id',
+            'genre'=> 'required|string|max:100',
+        ]);
+
         //
     }
 
