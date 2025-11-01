@@ -9,14 +9,14 @@ class Song extends Model
 
     public function album()
     {
-        return $this->belongsTo(Albums::class);
+        return $this->belongsTo(Album::class);
     }
 
     public function artist()
     {
         return $this->hasOneThrough(
-            Artists::class,
-            Albums::class,
+            Artist::class,
+            Album::class,
             'artist_id', // Foreign key on Albums table...
             'id', // Foreign key on Artists table...
             'album_id', // Local key on Songs table...
