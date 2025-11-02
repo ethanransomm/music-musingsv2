@@ -45,4 +45,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function rates(){
+        return $this->hasMany(Rate::class, 'user_id');
+    }
 }

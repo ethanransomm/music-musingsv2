@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
-{{-- Sets the browser tab title --}}
 @section('title', 'Create Album') 
 
 @section('content')
     <div class="max-w-xl mx-auto p-8 bg-white shadow-xl rounded-lg mt-8">
         <h2 class="text-3xl font-extrabold text-gray-900 mb-6 border-b pb-2">Add a New Album</h2>
 
-        {{-- Validation Error Display --}}
         @if ($errors->any())
             <div class="mb-4 p-4 text-sm text-red-800 bg-red-100 rounded-lg">
                 <p class="font-bold">Please correct the following errors:</p>
@@ -22,7 +20,6 @@
         <form method="POST" action="{{ route('albums.store') }}" class="space-y-6">
             @csrf
 
-            {{-- Title Field --}}
             <div>
                 <label for="title" class="block text-sm font-medium text-gray-700">Album Title</label>
                 <input type="text" name="title" id="title" required 
@@ -33,7 +30,6 @@
                 @enderror
             </div>
 
-            {{-- Artist Selection Dropdown (Requires $artists variable from controller) --}}
             <div>
                 <label for="artist_id" class="block text-sm font-medium text-gray-700">Artist</label>
                 @if (isset($artists) && $artists->isNotEmpty())
@@ -53,8 +49,6 @@
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
-            
-            {{-- Release Date Field --}}
             <div>
                 <label for="release_date" class="block text-sm font-medium text-gray-700">Release Date</label>
                 <input type="date" name="release_date" id="release_date" 
@@ -65,7 +59,6 @@
                 @enderror
             </div>
             
-            {{-- Genre Field --}}
             <div>
                 <label for="genre" class="block text-sm font-medium text-gray-700">Genre</label>
                 <input type="text" name="genre" id="genre" 

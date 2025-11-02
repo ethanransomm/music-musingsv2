@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', $album->title . ' by ' . $album->artist->artistName)
-
 @section('content')
     <div class="max-w-3xl mx-auto p-8 bg-white shadow-2xl rounded-xl mt-8">
         

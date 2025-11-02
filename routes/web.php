@@ -4,9 +4,11 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\RateController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Artist;
 use App\Models\Album;
+use App\Models\Rate;
 
 
 
@@ -52,6 +54,7 @@ Route::get('/album/{title}', function ($title) {
     return view('album', ['album' => $album]);
 })->name('album.show');
 
+Route::get('/forum', [RateController::class, 'index'])->name('forum.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
