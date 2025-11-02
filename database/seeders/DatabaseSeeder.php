@@ -12,6 +12,10 @@ use App\Models\Artist;
 use App\Models\Song;
 use App\Models\User;
 use App\Models\Rate;
+use Database\Factories\ArtistFactory;
+use Database\Factories\AlbumFactory;
+use Database\Factories\SongFactory;
+use Database\Factories\RateFactory;
 
 
 class DatabaseSeeder extends Seeder
@@ -28,7 +32,7 @@ class DatabaseSeeder extends Seeder
 
         $users = User::factory()->count(50)->create();
 
-        $artists = Artist::factory()
+        Artist::factory()
             ->count(50)
             ->has(
             Album::factory()->count(3)
@@ -43,19 +47,16 @@ class DatabaseSeeder extends Seeder
 
             $attachData = [];
             foreach ($randomUserIds as $i => $userId) {
-            $attachData[$userId] = $rates[$i];
+                $rateData = $rates[$i] ?? [];
+                unset($rateData['id'], $rateData['album_id']);
+                $rateData['user_id'] = $userId;
+
+                $attachData[] = $rateData;
             }
 
             if (!empty($attachData)) {
-            $album->rates()->attach($attachData);
+                $album->rates()->createMany($attachData);
             }
         }
-
-
-        $this->call(ArtistsTableSeeder::class);
-        $this->call(AlbumsTableSeeder::class);
-        $this->call(SongsTableSeeder::class);
-        $this->call(UserTableSeeder::class);
-        $this->call(RateTableSeeder::class);
     }
 }

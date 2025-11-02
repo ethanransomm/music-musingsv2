@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Artist;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Album extends Model
 {
@@ -27,8 +28,9 @@ class Album extends Model
         return $this->hasMany(Song::class, 'album_id');
     }
 
-    public function rates(){
-        return $this->hasMany(Rate::class, 'album_id');
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
     }
 
 }

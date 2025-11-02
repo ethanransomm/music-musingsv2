@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Generator as Faker;
 use App\Models\Album;
 use App\Models\User;
+use App\Models\Rate;
 
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Rate>
  */
-class RatesFactory extends Factory
+class RateFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +20,7 @@ class RatesFactory extends Factory
      * @return array<string, mixed>
      */
 
-    protected $model = Rates::class;
+    protected $model = Rate::class;
     
     public function definition(): array
     {
