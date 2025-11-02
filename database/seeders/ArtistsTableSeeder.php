@@ -2,50 +2,26 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Artist;
-use Illuminate\Support\Facades\DB;
+use App\Models\Song;
+use App\Models\Album;
 
 class ArtistsTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+    // Seed the Artist table with one-to-many relationship for Album and Songs
     public function run(): void
     {
 
-        if (Artist::count() > 0) { 
-            return; 
-        }
-
-             Artist::create([
-            'artistName' => 'Interpol',
-            'genre' => 'Post-punk revival',
-             ]);
-
-             Artist::create([
-             'artistName' => 'The Strokes',
-             'genre' => 'Garage rock revival',
-             ]);       
-
-             Artist::create([
-            'artistName' => 'The White Stripes',
-            'genre' => 'Alternative rock',
-            ]);
-
-            Artist::create([
-            'artistName' => 'Roy Orbison',
-            'genre' => 'Rock and roll',
-            ]);
-
-            Artist::create([
-            'artistName' => 'Madvillain',
-            'genre' => 'Hip hop',
-            ]);
-
-        }
-      
-
-        //
+        Artist::factory()
+            ->count(50)
+            ->has(
+                Album::factory()->count(3)
+                    ->has(Song::factory()->count(10))
+            )
+            ->create();
     }
+}
+
+
+

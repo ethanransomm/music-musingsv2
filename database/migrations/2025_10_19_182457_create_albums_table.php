@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+   
     public function up(): void
     {
         Schema::create('albums', function (Blueprint $table) {
@@ -17,15 +15,14 @@ return new class extends Migration
             $table->string('title');
             $table->date('release_date');
             $table->string('genre');
+            // Foreign Key from Artist table for assignment to an artist
             $table->foreignId('artist_id')->constrained('artists')->cascadeOnDelete();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('albums');
     }
 };
+

@@ -7,7 +7,7 @@
 <title>Home - {{ config('app.name') }}</title>
     </head>
     <body>
-        <h1>Welcome to the Home Page of {{ config('app.name') }}</h1>
+        <h1>Welcome to the Home Page of Music Musings</h1>
     </body>
 @endsection
         

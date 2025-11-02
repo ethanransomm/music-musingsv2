@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Artist;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Album extends Model
 {
@@ -34,3 +33,7 @@ class Album extends Model
     }
 
 }
+
+
+
+

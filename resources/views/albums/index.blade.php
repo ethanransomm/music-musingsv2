@@ -4,6 +4,7 @@
 
 
     <h1>All Albums</h1>
+     <a href= "{{ route('albums.create') }}">Add an Album </a>
         <ul>
             @foreach ($albums as $album)
                 <li>
@@ -12,5 +13,4 @@
             @endforeach
         </ul>
 
-        <a href= "{{ route('albums.create') }}">Add an Album </a>
 @endsection

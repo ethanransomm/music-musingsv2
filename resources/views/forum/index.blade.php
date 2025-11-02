@@ -4,6 +4,7 @@
     <div class="max-w-4xl mx-auto">
         <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Rate an Album</h1>
         <p class="text-gray-600 mb-8">Browse featured musings by our users.</p>
+         <a href= "{{ route('forum.create') }}">Review an Album</a>
 
         @if ($rates->isEmpty())
             <div class="text-center p-12 bg-white rounded-lg shadow-inner">
@@ -42,7 +43,7 @@
             </div>
         @endif
 
-        <a href= "{{ route('forum.create') }}">Review an Album</a>
+       
     </div>
 @endsection
 

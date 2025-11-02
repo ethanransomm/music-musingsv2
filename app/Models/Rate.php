@@ -16,7 +16,7 @@ class Rate extends Model
         "score",    
         "comment",
     ];
-    //
+
 
     public function rate()
     {
@@ -34,3 +34,5 @@ class Rate extends Model
 
 
 }
+
+

@@ -6,28 +6,27 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
-            
+            // Foreign Key for the user rating an album 
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            // Foreign Key for the album being rated
             $table->foreignId('album_id')->constrained()->onDelete('cascade');
             $table->integer('score');
             $table->text('comment')->nullable();
             $table->timestamps();
+            // Ensures one user can only rate an album once, for one to one relationship
             $table->unique(['user_id', 'album_id']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('rates');
     }
 };
+
+

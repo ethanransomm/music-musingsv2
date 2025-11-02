@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Faker\Generator as Faker;
 use App\Models\Album;
 use App\Models\User;
 use App\Models\Rate;
@@ -14,11 +13,6 @@ use App\Models\Rate;
  */
 class RateFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
 
     protected $model = Rate::class;
     
@@ -33,7 +27,10 @@ class RateFactory extends Factory
                 'album_id'=> fake()->randomElement($albumIds),
                 "score"=> fake()->numberBetween(1,10),
                 "comment"=> fake()->sentence(50)
-            //
+        
         ];
     }
 }
+
+
+

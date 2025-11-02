@@ -50,3 +50,5 @@ class User extends Authenticatable
         return $this->hasMany(Rate::class, 'user_id')->withPivot('comment', 'score');
     }
 }
+
+
