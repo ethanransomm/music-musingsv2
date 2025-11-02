@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Music Musings @yield('title') </title>
+    @livewireStyles
 
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
 <body>
+    @livewireScripts
     <header>
         <h1> @yield('title')</h1>
         <nav>

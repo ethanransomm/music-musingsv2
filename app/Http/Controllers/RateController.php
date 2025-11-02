@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Rate;
 use App\Models\User;
-use App\Model\Album;
+use App\Models\Album;
 
 use Illuminate\Http\Request;
 
@@ -18,7 +18,22 @@ class RateController extends Controller
     }
 
     public function store(Request $request){
-        $rate = Rate::create($request->all());
-        return redirect()->route('forum.store')->with('success','');
+
+
+        $validated = $request->validate([
+            'score' => 'required|integer|min:1|max:10',
+            'comment' => 'nullable|string',
+        ]);
+
+       
+
+        return redirect()->route('forum.index')->with('success', 'Rating saved.');
+    }
+
+    public function create()
+    {
+        $albums = Album::select('id', 'title')->orderBy('title')->get();
+        return view('forum.create', compact('albums'));
+        //
     }
 }

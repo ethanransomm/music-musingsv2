@@ -56,6 +56,9 @@ Route::get('/album/{title}', function ($title) {
 
 Route::get('/forum', [RateController::class, 'index'])->name('forum.index');
 
+Route::get('/forum/create', [RateController::class, 'create'])->name('forum.create');
+Route::post('/forum', [RateController::class, 'store'])->name('forum.store');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

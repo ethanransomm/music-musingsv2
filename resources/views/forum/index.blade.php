@@ -41,6 +41,8 @@
                 @endforeach
             </div>
         @endif
+
+        <a href= "{{ route('forum.create') }}">Review an Album</a>
     </div>
 @endsection
 
