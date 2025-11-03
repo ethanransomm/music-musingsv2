@@ -25,3 +25,4 @@ class ArtistsTableSeeder extends Seeder
 
 
 
+

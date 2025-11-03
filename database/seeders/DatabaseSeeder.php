@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        // Call each Seeder in the necessary order
+        // Call each Seeder in the correct order
         $this->call(UserTableSeeder::class);
         $this->call(ArtistsTableSeeder::class);
         $this->call(RateTableSeeder::class);

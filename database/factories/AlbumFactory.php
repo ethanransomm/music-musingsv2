@@ -22,13 +22,14 @@ class AlbumFactory extends Factory
         $artistIds = Artist::pluck('id')->toArray();
 
         return [
-            'title'=> $this->faker->sentence,
-            'artist_id'=> $this->faker->randomElement($artistIds),
-            'release_date'=> $this->faker->date(),
-            'genre'=> $this->faker->words(2, true),
+            'title'=> fake()->sentence,
+            'artist_id'=> fake()->randomElement($artistIds),
+            'release_date'=> fake()->date(),
+            'genre'=> fake()->words(2, true),
         ];
     }
 }
+
 
 
 
