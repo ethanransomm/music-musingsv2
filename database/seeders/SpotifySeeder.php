@@ -22,7 +22,12 @@ class SpotifySeeder extends Seeder
             'Outkast',
             'Genesis',
             'The Cure',
-            'The Smashing Pumpkins'
+            'The Smashing Pumpkins',
+            'The Velvet Underground',
+            'Bright Eyes',
+            'The Clash',
+            'The Strokes',
+            'The Libertines',
         ];
 
         foreach ($targetArtists as $artistName) {
@@ -42,7 +47,7 @@ class SpotifySeeder extends Seeder
 
             $albumsResponse = Spotify::artistAlbums($artistData['id'])
                 ->includeGroups('album')
-                ->limit(10) 
+                ->limit(40) 
                 ->get();
 
             $albums = $albumsResponse['items'] ?? [];
