@@ -41,7 +41,7 @@
 
         <div>
             <label class="block text-sm font-medium text-gray-700">Review Content</label>
-            <textarea wire:model="content" rows="5" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+            <textarea wire:model="comment" rows="5" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
             @error('content') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
         </div>
 

@@ -10,7 +10,9 @@ use App\Models\Artist;
 use App\Models\Album;
 use App\Models\Rate;
 use App\Livewire\CreateReview;
-
+use App\Livewire\AlbumIndex;
+use App\Livewire\ArtistIndex;
+use App\Livewire\ArtistShow;
 
 
 Route::get('/', function () {
@@ -21,38 +23,16 @@ Route::get('/home', function () {
     return view('home');
 })->name('Home');
 
-Route::get('/artists', [ArtistController::class, 'index'])->name('artists.index');
+Route::get('/artists', ArtistIndex::class)->name('artists.index');
+Route::get('/artist/{artistId}', ArtistShow::class)->name('artist.show');
 
-Route::get('/artist/{artistName}', function ($artistName) {
-    $artist = Artist::where('artistName', $artistName)->with('albums')->first();
-    $artistsCollection = $artist ? collect([$artist]) : collect([]);
-    return view('artist', ['albums' => $artistsCollection]);
-})->name('artist.show');
+Route::get('/albums', AlbumIndex::class)->name('albums.index');
 
-
-Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
-
-Route::get('/album/create', [AlbumController::class, 'create'])->name('albums.create'); 
-
+Route::get('/album/create', [AlbumController::class, 'create'])->name('albums.create');
 Route::post('/album', [AlbumController::class, 'store'])->name('albums.store');
 
-Route::get('/album/{title}', function ($title) {
-    $album = Album::where('title', $title)->with('songs', 'artist')->first();
-    return view('album', ['album' => $album]);
-})->name('album.show');
-
-
-
-
-Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
-
-
-Route::get('/album/create', [AlbumController::class,'create'])->name('albums.create');
-Route::post('/album', [AlbumController::class,'store'])->name('albums.store');
-
-Route::get('/album/{title}', function ($title) {
-    $album = Album::where('title', $title)->with('songs', 'artist')->first();
-    return view('album', ['album' => $album]);
+Route::get('/album/{album}', function (Album $album) {
+    return view('album', ['album' => $album->load(['songs', 'artist', 'rates.user'])]);
 })->name('album.show');
 
 Route::get('/forum', [RateController::class, 'index'])->name('forum.index');

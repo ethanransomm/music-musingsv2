@@ -11,14 +11,14 @@ class CreateReview extends Component
 {
     public $score = 0; 
     public $title = '';
-    public $content = '';
+    public $comment = '';
     public $album_id = '';
     
     protected $rules = [
         'album_id' => 'required|exists:albums,id',
         'score' => 'required|integer|min:1|max:10',
         'title' => 'required|string|min:3',
-        'content' => 'required|string|min:10',
+        'comment' => 'required|string|min:10',
     ];
 
     public function setRating($val)
@@ -28,14 +28,14 @@ class CreateReview extends Component
     }
 
     public function save()
-    {
+    { 
         $this->validate();
 
+        
         Rate::create([
             'user_id' => auth()->id(),
             'album_id' => $this->album_id,
             'score' => $this->score,
-            'title' => $this->title,
             'comment' => $this->comment, 
         ]);
 

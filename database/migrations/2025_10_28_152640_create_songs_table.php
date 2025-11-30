@@ -16,6 +16,7 @@ return new class extends Migration
             // Foreign Key from Album table to create songs assigned to an album
             $table->foreignId('album_id')->constrained('albums')->cascadeOnDelete();
             $table->integer('duration')->nullable();
+            $table->integer('track_number')->default(0);
             
         });
     }

@@ -14,6 +14,7 @@ class Rate extends Model
         "user_id",
         "album_id",
         "score",    
+        'title',
         "comment",
     ];
 

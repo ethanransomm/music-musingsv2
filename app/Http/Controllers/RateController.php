@@ -17,9 +17,6 @@ class RateController extends Controller
         return view('forum.index', ['rates' => $rates]);
     }
 
-    // public function store(Request $request){
-
-
         // $validated = $request->validate([
            // 'score' => 'required|integer|min:1|max:10',
            // 'comment' => 'nullable|string',

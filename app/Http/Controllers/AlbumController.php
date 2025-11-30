@@ -12,17 +12,18 @@ class AlbumController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $albums = Album::all();
-        return view("albums.index", ["albums"=> $albums], ["songs"=> Song::all()]);
+   // public function index()
+    // {
+       // $albums = Album::all();
+        // return view("albums.index", ["albums"=> $albums], ["songs"=> Song::all()]);
 
         //
-    }
+    // }
 
     /**
      * Show the form for creating a new resource.
      */
+
     
     public function create()
     {
@@ -50,9 +51,9 @@ class AlbumController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
+    public function show($id) {
+        $album = Album::where('title', $id)->firstOrFail();
+        return view('album', compact('album'));
     }
 
     /**
