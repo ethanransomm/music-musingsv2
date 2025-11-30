@@ -9,55 +9,101 @@
     @livewireStyles
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        
+                        indigo: {
+                            400: '#1ed760',
+                            500: '#1DB954', 
+                            600: '#1aa34a', 
+                            700: '#15833b',
+                        },
+                        gray: {
+                            100: '#f9f9f9', 
+                            200: '#e5e5e5', 
+                            300: '#b3b3b3', 
+                            400: '#535353', 
+                            700: '#282828', 
+                            800: '#181818', 
+                            900: '#121212', 
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        
+        .group h3.font-bold.text-gray-900 {
+            color: #1DB954 !important; 
+            transition: color 0.3s ease;
+        }
 
+        .group:hover h3.font-bold.text-gray-900 {
+            color: #1ed760 !important;
+        }
+    </style>
 </head>
 
-<body>
-    <header>
-        <h1> @yield('title')</h1>
-        <nav>
-            <a href="/home">Home</a> |
-            <a href="/artists">Artists</a> |
-            <a href="/albums">Albums</a> |
-            <a href="/about">About</a> |
-            <a href="/forum">Forum</a>
-
-            @auth
-            <div class="flex items-center space-x-3">
-                <span class="text-sm font-semibold text-gray-700">Hello, {{ Auth::user()->name }}</span>
-                <form method="POST" action="{{ route('logout') }}" class="inline">
-                    @csrf
-                    <button type="submit" class="text-sm text-red-500 hover:text-red-700">
-                        Log Out
-                    </button>
-                </form>
+<body class="bg-gray-900 text-gray-100 antialiased font-sans">
+    
+    <header class="bg-black/90 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+            <div class="flex items-center space-x-1">
+                <a href="/home" class="text-gray-300 hover:text-white hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">Home</a>
+                <a href="/artists" class="text-gray-300 hover:text-white hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">Artists</a>
+                <a href="/albums" class="text-gray-300 hover:text-white hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">Albums</a>
+                <a href="/about" class="text-gray-300 hover:text-white hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">About</a>
+                <a href="/forum" class="text-gray-300 hover:text-white hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">Forum</a>
             </div>
-            @endguest
-            @guest
-                <div class="space-x-4">
-                    <a href="{{ route('login') }}" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium">Log
-                        In</a>
-                    <a href="{{ route('register') }}"
-                        class="text-sm text-white bg-indigo-600 px-3 py-1 rounded-md hover:bg-indigo-700 transition">Register</a>
-                </div>
-            @endguest
 
+            <div class="flex items-center">
+                @auth
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm font-bold text-gray-100">
+                            {{ Auth::user()->name }}
+                        </span>
+                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                            @csrf
+                            <button type="submit" class="text-xs text-gray-400 hover:text-white uppercase tracking-wider font-bold transition">
+                                Log Out
+                            </button>
+                        </form>
+                    </div>
+                @endauth
 
+                @guest
+                    <div class="flex items-center space-x-4">
+                        <a href="{{ route('login') }}" class="text-sm text-gray-300 hover:text-white font-bold transition uppercase tracking-wide">
+                            Log In
+                        </a>
+                        <a href="{{ route('register') }}"
+                            class="text-sm text-black bg-white hover:bg-gray-200 px-6 py-2 rounded-full font-bold transition transform hover:scale-105">
+                            Sign Up
+                        </a>
+                    </div>
+                @endguest
+            </div>
         </nav>
     </header>
 
+    <main class="min-h-screen">
+        @if(isset($slot))
+            {{ $slot }}
+        @else
+            @yield('content')
+        @endif
+    </main>
 
-    <div>
-    @if(isset($slot))
-        {{ $slot }}
-    
-    @else
-        @yield('content')
-    @endif
-</div>
-    <footer>
-        <p>&copy; 2025 Music Musings. All rights reserved.</p>
+    <footer class="py-12 text-center border-t border-gray-800 mt-12">
+        <p class="text-gray-400 text-sm">&copy; 2025 Music Musings. All rights reserved.</p>
     </footer>
 
- @livewireScripts
+    @livewireScripts
 </body>
+</html>

@@ -29,7 +29,7 @@ class AlbumIndex extends Component
                       });
             })
             ->latest()
-            ->paginate(12);
+            ->paginate(24);
 
         return view('livewire.album-index', [
             'albums' => $albums

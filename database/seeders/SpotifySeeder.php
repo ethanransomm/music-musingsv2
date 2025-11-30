@@ -19,7 +19,10 @@ class SpotifySeeder extends Seeder
             'MF DOOM', 
             'Car Seat Headrest', 
             'George Harrison',
-            'Outkast'
+            'Outkast',
+            'Genesis',
+            'The Cure',
+            'The Smashing Pumpkins'
         ];
 
         foreach ($targetArtists as $artistName) {
@@ -50,6 +53,9 @@ class SpotifySeeder extends Seeder
                 $unformattedData = $spotifyAlbum['release_date'];
                 $preciseData = $spotifyAlbum['release_date_precision'];
 
+                $extractGenres = $artistData['genres'] ?? [];
+                $albumGenre = !empty($extractGenres) ? ucwords($extractGenres[0]) : 'Alternative';
+
                 $formattedData = $unformattedData;
                 if ($preciseData === 'year') {
                     $formattedData .= '-01-01';
@@ -61,7 +67,7 @@ class SpotifySeeder extends Seeder
                     ['title' => $spotifyAlbum['name']], 
                     [
                         'artist_id' => $artist->id,
-                        'genre' => 'Rock', 
+                        'genre' => $albumGenre, 
                         'cover_url' => $imageUrl,
                         'release_date' => $formattedData,
                         'release_date_precision' => $preciseData
