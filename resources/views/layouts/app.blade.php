@@ -13,7 +13,6 @@
 </head>
 
 <body>
-    @livewireScripts
     <header>
         <h1> @yield('title')</h1>
         <nav>
@@ -49,11 +48,16 @@
 
 
     <div>
+    @if(isset($slot))
+        {{ $slot }}
+    
+    @else
         @yield('content')
-    </div>>
+    @endif
+</div>
     <footer>
         <p>&copy; 2025 Music Musings. All rights reserved.</p>
     </footer>
 
-
+ @livewireScripts
 </body>

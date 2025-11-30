@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Artist;
 use App\Models\Album;
 use App\Models\Rate;
+use App\Livewire\CreateReview;
 
 
 
@@ -56,8 +57,8 @@ Route::get('/album/{title}', function ($title) {
 
 Route::get('/forum', [RateController::class, 'index'])->name('forum.index');
 
-Route::get('/forum/create', [RateController::class, 'create'])->name('forum.create');
-Route::post('/forum', [RateController::class, 'store'])->name('forum.store');
+Route::get('/forum/create', CreateReview::class)->name('forum.create');
+// Route::post('/forum', [RateController::class, 'store'])->name('forum.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
