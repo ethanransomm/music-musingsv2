@@ -71,7 +71,7 @@
             <a href="{{ route('artists.index') }}" class="text-sm font-bold text-gray-400 hover:text-white uppercase tracking-wider transition">View All</a>
         </div>
         <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
-            @foreach($newArtists as $artist)
+            @foreach($featuredArtists as $artist)
                 <a href="{{ route('artist.show', $artist->id) }}" class="group text-center">
                     <div class="aspect-square rounded-full bg-gray-800 border-2 border-gray-700 group-hover:border-green-500 transition overflow-hidden mb-2 flex items-center justify-center">
                         <span class="text-2xl font-bold text-gray-600 group-hover:text-white transition">

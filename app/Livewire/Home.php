@@ -15,7 +15,7 @@ class Home extends Component
         return view('livewire.home', [
             'featuredAlbums' => Album::inRandomOrder()->take(8)->get(),
             
-            'newArtists' => Artist::latest()->take(6)->get(),
+            'featuredArtists' => Artist::latest()->take(6)->get(),
             
             'recentReviews' => Rate::with('album', 'user')
                                    ->where('score', '>=', 8)
