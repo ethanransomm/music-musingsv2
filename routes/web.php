@@ -15,13 +15,13 @@ use App\Livewire\ArtistIndex;
 use App\Livewire\ArtistShow;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Livewire\Home;
 
-Route::get('/home', function () {
-    return view('home');
-})->name('Home');
+Route::get('/', Home::class)->name('home');
+
+
+Route::get('/home', Home::class);
+
 
 Route::get('/artists', ArtistIndex::class)->name('artists.index');
 Route::get('/artist/{artistId}', ArtistShow::class)->name('artist.show');

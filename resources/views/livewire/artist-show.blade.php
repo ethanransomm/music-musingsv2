@@ -10,7 +10,7 @@
     </div>
 
     <div>
-        <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-100 pb-2">Discography</h2>
+        <h2 class="text-2xl font-bold text-gray-100 mb-6 border-b border-gray-100 pb-2">Discography</h2>
 
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
            
@@ -33,7 +33,7 @@
                         @endif
                     </div>
 
-                    <h3 class="font-bold text-gray-100 leading-tight group-hover:text-green-400 transition truncate">
+                    <h3 class="font-bold text-white text-lg truncate group-hover:text-green-400 transition">
                         {{ $album->title }}
                     </h3>
                     <p class="text-xs text-gray-400 mt-1">

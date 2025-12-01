@@ -14,39 +14,34 @@
             theme: {
                 extend: {
                     colors: {
-                        
-                        indigo: {
-                            400: '#1ed760',
-                            500: '#1DB954', 
-                            600: '#1aa34a', 
-                            700: '#15833b',
+                        green: {
+                            400: '#a78bfa',
+                            500: '#8b5cf6', 
+                            600: '#7c3aed', 
+                            700: '#6d28d9',
                         },
+                        indigo: {
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                        },
+                        
                         gray: {
-                            100: '#f9f9f9', 
+                            100: '#f9f9f9',
                             200: '#e5e5e5', 
-                            300: '#b3b3b3', 
-                            400: '#535353', 
-                            700: '#282828', 
+                            300: '#d4d4d4', 
+                            400: '#a3a3a3', 
+                            500: '#737373', 
+                            600: '#525252', 
+                            700: '#282828',
                             800: '#181818', 
                             900: '#121212', 
-                        }
                     }
                 }
             }
         }
     </script>
-    
-    <style>
-        
-        .group h3.font-bold.text-gray-900 {
-            color: #1DB954 !important; 
-            transition: color 0.3s ease;
-        }
-
-        .group:hover h3.font-bold.text-gray-900 {
-            color: #1ed760 !important;
-        }
-    </style>
 </head>
 
 <body class="bg-gray-900 text-gray-100 antialiased font-sans">

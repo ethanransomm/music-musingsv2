@@ -84,7 +84,7 @@
             <label class="block text-sm font-medium text-gray-300">Review Title</label>
             <input type="text" wire:model="title" 
                    class="mt-1 block w-full bg-gray-700 border border-gray-600 text-white rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 placeholder-gray-400"
-                   placeholder="Best album ever?">
+                   placeholder="Best Album you've ever heard?">
             @error('title') <span class="text-red-400 text-sm">{{ $message }}</span> @enderror
         </div>
 

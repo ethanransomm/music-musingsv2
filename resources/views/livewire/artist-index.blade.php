@@ -6,13 +6,16 @@
             <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Artists</h1>
             <p class="text-gray-500 mt-1">Browse our collection of {{ $artists->total() }} artists.</p>
         </div>
-        <div class="relative w-full md:w-1/3">
+         <div class="relative w-full md:w-96">
             <input wire:model.live.debounce.300ms="search" 
                    type="text" 
-                   placeholder="Find an artist..." 
-                   class="w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-full focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition shadow-sm text-sm">
-            <div class="absolute left-3 top-2.5 text-gray-400">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                   placeholder="Search for artists..."
+                   class="w-full pl-12 pr-4 py-3 bg-gray-800 border border-transparent text-white placeholder-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-gray-700 transition duration-200 shadow-sm text-sm font-medium">
+            
+            <div class="absolute left-4 top-3.5 text-gray-400">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
             </div>
         </div>
     </div>
@@ -31,7 +34,7 @@
                 </div>
 
                 
-                <h3 class="font-bold text-gray-900 group-hover:text-indigo-600 transition truncate w-full">
+                <h3 class="font-bold text-white text-lg truncate group-hover:text-green-400 transition">
                     {{ $artist->artistName }}
                 </h3>
                 <span class="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-600 rounded-full mt-2">
