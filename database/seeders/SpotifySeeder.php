@@ -3,16 +3,15 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Aerni\Spotify\Facades\Spotify;
+use App\Services\SpotifyService; // <--- Using YOUR Service
 use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Song;
 
 class SpotifySeeder extends Seeder
 {
-   public function run(): void
+    public function run(SpotifyService $spotify): void
     {
-      
         $targetArtists = [
             'Radiohead', 
             'Interpol', 
@@ -31,13 +30,18 @@ class SpotifySeeder extends Seeder
         ];
 
         foreach ($targetArtists as $artistName) {
-            $searchResult = Spotify::searchArtists($artistName)->limit(1)->get();
-            $artistData = $searchResult['artists']['items'][0] ?? null;
+            $this->command->info("Finding: $artistName's Albums");
+
+           
+            $artistData = $spotify->searchArtist($artistName);
 
             if (!$artistData) {
                 $this->command->error("  - Artist not found: $artistName");
                 continue; 
             }
+
+            $unprocessedGenres = $artistData['genres'] ?? [];
+            $albumGenre = !empty($unprocessedGenres) ? ucwords($unprocessedGenres[0]) : 'Alternative';
 
             $artist = Artist::firstOrCreate(
                 ['artistName' => $artistData['name']]
@@ -45,21 +49,18 @@ class SpotifySeeder extends Seeder
             
             $this->command->info("  - Found ID: " . $artist->id);
 
-            $albumsResponse = Spotify::artistAlbums($artistData['id'])
-                ->includeGroups('album')
-                ->limit(40) 
-                ->get();
+            $albums = $spotify->getArtistAlbums($artistData['id']);
 
-            $albums = $albumsResponse['items'] ?? [];
+             if (empty($albums)) {
+                $this->command->warn("    ! No albums found or API error. Skipping...");
+                continue;
+            }
 
             foreach ($albums as $spotifyAlbum) {
                 
                 $imageUrl = $spotifyAlbum['images'][0]['url'] ?? null;
                 $unformattedData = $spotifyAlbum['release_date'];
                 $preciseData = $spotifyAlbum['release_date_precision'];
-
-                $extractGenres = $artistData['genres'] ?? [];
-                $albumGenre = !empty($extractGenres) ? ucwords($extractGenres[0]) : 'Alternative';
 
                 $formattedData = $unformattedData;
                 if ($preciseData === 'year') {
@@ -83,9 +84,9 @@ class SpotifySeeder extends Seeder
 
                 if (Song::where('album_id', $album->id)->count() === 0) {
                     
-                    $tracksResponse = Spotify::albumTracks($spotifyAlbum['id'])->limit(50)->get();
+                    $tracks = $spotify->getAlbumTracks($spotifyAlbum['id']);
 
-                    foreach ($tracksResponse['items'] ?? [] as $track) {
+                    foreach ($tracks as $track) {
                         Song::create([
                             'album_id' => $album->id, 
                             'title' => $track['name'],
