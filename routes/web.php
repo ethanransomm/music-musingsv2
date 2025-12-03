@@ -5,10 +5,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\RateController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Artist;
 use App\Models\Album;
 use App\Models\Rate;
+use App\Models\Comment;
 use App\Livewire\CreateReview;
 use App\Livewire\AlbumIndex;
 use App\Livewire\ArtistIndex;
@@ -37,10 +39,13 @@ Route::get('/album/{album}', function (Album $album) {
 
 Route::get('/forum', [RateController::class, 'index'])->name('forum.index');
 
+Route::post('/forum/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
+
 Route::get('/forum/create', CreateReview::class)->name('forum.create');
 // Route::post('/forum', [RateController::class, 'store'])->name('forum.store');
 
 Route::delete('/forum/{id}', [RateController::class, 'delete']);
+Route::delete('/forum/comments/{id}', [CommentController::class, 'delete']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

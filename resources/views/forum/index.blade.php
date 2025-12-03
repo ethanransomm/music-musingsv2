@@ -98,8 +98,93 @@
                             @endif
                         @endauth
                     </div>
+                    <form class="comment-form" data-id="{{ $rate->id }}">
+                        @csrf
+                        <textarea name="body"
+                            class="w-full bg-gray-700 text-white p-2 rounded border border-gray-600 focus:outline-none focus:border-green-500"
+                            placeholder="Write a comment..." rows="2"></textarea>
+
+                        <button type="submit"
+                            class="mt-2 text-xs bg-green-500 hover:bg-green-400 text-black font-bold py-1 px-3 rounded transition">
+                            Post
+                        </button>
+                    </form>
+
+                    <div id="comments-list-{{ $rate->id }}" class="mt-4 space-y-3">
+                        @foreach($rate->comments ?? [] as $comment)
+
+                            <div class="bg-gray-800/50 p-3 rounded-lg border border-gray-700/50 text-sm">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="font-bold text-green-400 text-xs">{{ $comment->user->name }}</span>
+
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-gray-500 text-[10px]">{{ $comment->created_at->diffForHumans() }}</span>
+
+                                        @auth
+                                            @if(auth()->user()->user_admin == true || auth()->id() == $comment->user_id)
+                                                <form action="{{ url('/forum/comments/' . $comment->id) }}" method="POST"
+                                                    onsubmit="return confirm('Delete this comment?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="text-red-500 hover:text-red-400 text-[10px] font-bold uppercase">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        @endauth
+                                    </div>
+                                </div>
+
+                                <p class="text-gray-300">{{ $comment->content }}</p>
+                            </div>
+
+                        @endforeach
+                    </div>
                 @endforeach
             </div>
         @endif
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('Comments script loaded.');
+
+            document.querySelectorAll('.comment-form').forEach(form => {
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    const id = this.dataset.id;
+                    const formData = new FormData(this);
+
+                    try {
+                        const response = await fetch(`/forum/${id}/comments`, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': formData.get('_token'),
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(Object.fromEntries(formData))
+                        });
+
+                        const data = await response.json();
+
+                        if (data.success) {
+                            const list = document.getElementById(`comments-list-${id}`);
+                            const newComment = `
+                                    <div class="bg-gray-700/50 p-2 rounded text-sm border-l-2 border-green-500">
+                                        <span class="font-bold text-green-400">${data.user}:</span> 
+                                        <span class="text-gray-300">${data.body}</span>
+                                    </div>`;
+
+                            list.insertAdjacentHTML('afterbegin', newComment);
+                            this.reset();
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
