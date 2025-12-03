@@ -15,6 +15,7 @@ use App\Livewire\CreateReview;
 use App\Livewire\AlbumIndex;
 use App\Livewire\ArtistIndex;
 use App\Livewire\ArtistShow;
+use Illuminate\Http\Request;
 
 
 use App\Livewire\Home;
@@ -46,6 +47,11 @@ Route::get('/forum/create', CreateReview::class)->name('forum.create');
 
 Route::delete('/forum/{id}', [RateController::class, 'delete']);
 Route::delete('/forum/comments/{id}', [CommentController::class, 'delete']);
+
+Route::post('/notifications/mark-all-read', function (Request $request) {
+    auth()->user()->unreadNotifications->markAsRead();
+    return back();
+})->name('mark-as-read');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

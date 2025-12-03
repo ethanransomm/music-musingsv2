@@ -10,32 +10,31 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     public function store(Request $request, $id)
-    {
-        
-        $request->validate([
-            'body' => 'required|max:500'
-        ]);
+{
+    
+    $request->validate([
+        'body' => 'required|max:500'
+    ]);
 
-        $comment = Comment::create([
-            'user_id' => auth()->id(),
-            'rate_id' => $id,
-            'content' => $request->body,
-        ]);
+    $rate = Rate::findOrFail($id);
 
-        $rate = Rate::find($id);
-
-        if (auth()->id() !== $rate->user_id){
-            $poster = $rate->user();
-            $poster->notify(new CommentNotification(auth()->user()->name, $rate->album->title));
-        }
-
-        return response()->json([
-            'success' => true,
-            'user' => auth()->user()->name,
-            'body' => $comment->content,
-            'created_at' => $comment->created_at->diffForHumans()
-        ]);
+    $comment = Comment::create([
+        'user_id' => auth()->id(),
+        'rate_id' => $id,
+        'content' => $request->body, 
+    ]);
+    if (auth()->id() !== $rate->user_id) {
+        $poster = $rate->user; 
+        $poster->notify(new CommentNotification(auth()->user()->name, $rate->album->title));
     }
+
+    return response()->json([
+        'success' => true,
+        'user' => auth()->user()->name,
+        'body' => $comment->content,
+        'created_at' => $comment->created_at->diffForHumans()
+    ]);
+}
 
       public function delete($id) {
         $comment = Comment::findOrFail($id);

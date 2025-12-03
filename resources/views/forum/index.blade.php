@@ -38,10 +38,8 @@
 
             <div class="space-y-6">
                 @foreach ($rates as $rate)
-                    <div
+                    <div id="review-{{ $rate->id }}" class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700 ..."
                         class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-gray-600 transition duration-200">
-
-
                         <div class="flex justify-between items-start mb-4 border-b border-gray-700 pb-4">
                             <div>
                                 <h2 class="text-xl font-bold text-white">
