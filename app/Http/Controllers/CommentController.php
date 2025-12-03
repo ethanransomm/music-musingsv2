@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Comment;
+use App\Models\Rate;
+use App\Notifications\CommentNotification;
 
 use Illuminate\Http\Request;
 
@@ -9,6 +11,7 @@ class CommentController extends Controller
 {
     public function store(Request $request, $id)
     {
+        
         $request->validate([
             'body' => 'required|max:500'
         ]);
@@ -18,6 +21,13 @@ class CommentController extends Controller
             'rate_id' => $id,
             'content' => $request->body,
         ]);
+
+        $rate = Rate::find($id);
+
+        if (auth()->id() !== $rate->user_id){
+            $poster = $rate->user();
+            $poster->notify(new CommentNotification(auth()->user()->name, $rate->album->title));
+        }
 
         return response()->json([
             'success' => true,
