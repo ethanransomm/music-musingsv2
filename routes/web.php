@@ -40,6 +40,8 @@ Route::get('/forum', [RateController::class, 'index'])->name('forum.index');
 Route::get('/forum/create', CreateReview::class)->name('forum.create');
 // Route::post('/forum', [RateController::class, 'store'])->name('forum.store');
 
+Route::delete('/forum/{id}', [RateController::class, 'delete']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

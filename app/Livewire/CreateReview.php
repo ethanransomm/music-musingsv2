@@ -30,7 +30,7 @@ class CreateReview extends Component
         $album = Album::find($id);
         if ($album) {
             $this->album_id = $album->id;
-            $this->selectedlbumTitle = $album->title;
+            $this->selectedAlbumTitle = $album->title;
             $this->albumSearch = '';
             $this->showDropdown = false;
         }

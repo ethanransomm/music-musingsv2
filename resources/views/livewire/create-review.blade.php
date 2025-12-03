@@ -9,9 +9,13 @@
             @if($album_id)
                 <div class="flex items-center justify-between p-3 bg-gray-700 border border-green-500/50 rounded-md shadow-sm">
                     <div class="flex items-center">
-                        <span class="text-green-400 mr-2">✓</span>
-                        <span class="text-white font-bold">{{ $selectedAlbumTitle }}</span>
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        
+                        <span class="text-white font-bold">
+                            {{ $selectedAlbumTitle ?? 'Selected Album' }}
+                        </span>
                     </div>
+
                     <button type="button" wire:click="$set('album_id', '')" class="text-xs text-gray-400 hover:text-white underline decoration-gray-500 hover:decoration-white transition">
                         Change
                     </button>
