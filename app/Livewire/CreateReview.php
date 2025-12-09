@@ -44,12 +44,20 @@ class CreateReview extends Component
     public function save()
     {
         $this->validate();
+        $existingRate = Rate::where('user_id', auth()->id())
+            ->where('album_id', $this->album_id)
+            ->first();
 
+        if ($existingRate) {
+            $this->addError('album_id', 'You have already reviewed this album. Please edit your existing review instead.');
+            return;
+        }    
 
         Rate::create([
             'user_id' => auth()->id(),
             'album_id' => $this->album_id,
             'score' => $this->score,
+            'title' => $this->title,
             'comment' => $this->comment,
         ]);
 

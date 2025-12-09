@@ -61,35 +61,38 @@
                     class="text-gray-300 hover:text-white hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">Forum</a>
             </div>
 
-            <div class="flex items-center gap-6"> 
+            <div class="flex items-center gap-6">
                 @auth
                     <div class="relative" x-data="{ open: false }">
-                        <button @click="open = !open" class="relative p-1 rounded-full text-gray-400 hover:text-white focus:outline-none transition">
+                        <button @click="open = !open"
+                            class="relative p-1 rounded-full text-gray-400 hover:text-white focus:outline-none transition">
                             <span class="sr-only">View notifications</span>
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                             </svg>
 
                             @if(auth()->user()->unreadNotifications->count() > 0)
-                                <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full">
+                                <span
+                                    class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full">
                                     {{ auth()->user()->unreadNotifications->count() }}
                                 </span>
                             @endif
                         </button>
 
-                        <div x-show="open" @click.away="open = false" 
-                             x-transition:enter="transition ease-out duration-100"
-                             x-transition:enter-start="transform opacity-0 scale-95"
-                             x-transition:enter-end="transform opacity-100 scale-100"
-                             class="absolute right-0 mt-2 w-80 bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-700 origin-top-right"
-                             style="display: none;">
+                        <div x-show="open" @click.away="open = false" x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="transform opacity-0 scale-95"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            class="absolute right-0 mt-2 w-80 bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-700 origin-top-right"
+                            style="display: none;">
 
                             @if(auth()->user()->unreadNotifications->count() > 0)
                                 <div class="px-4 py-2 border-b border-gray-700 flex justify-between items-center">
                                     <span class="text-sm font-semibold text-gray-200">Notifications</span>
                                     <form action="{{ route('mark-as-read') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="text-xs text-green-400 hover:text-green-300 font-bold uppercase">
+                                        <button type="submit"
+                                            class="text-xs text-green-400 hover:text-green-300 font-bold uppercase">
                                             Mark all read
                                         </button>
                                     </form>
@@ -100,45 +103,50 @@
 
                             <div class="max-h-64 overflow-y-auto">
                                 @foreach(auth()->user()->unreadNotifications as $notification)
-                                    <a href="{{ $notification->data['url'] ?? '#' }}" class="block px-4 py-3 hover:bg-gray-700 transition border-b border-gray-700 last:border-0">
+                                    <a href="{{ $notification->data['url'] ?? '#' }}"
+                                        class="block px-4 py-3 hover:bg-gray-700 transition border-b border-gray-700 last:border-0">
                                         <p class="text-sm text-gray-300">{{ $notification->data['message'] }}</p>
-                                        <p class="text-xs text-gray-500 mt-1">{{ $notification->created_at->diffForHumans() }}</p>
+                                        <p class="text-xs text-gray-500 mt-1">{{ $notification->created_at->diffForHumans() }}
+                                        </p>
                                     </a>
                                 @endforeach
                             </div>
                         </div>
                     </div>
-                @endauth    
-
-            <div class="flex items-center">
-                @auth
-                    <div class="flex items-center space-x-4">
-                        <span class="text-sm font-bold text-gray-100">
-                            {{ Auth::user()->name }}
-                        </span>
-                        <form method="POST" action="{{ route('logout') }}" class="inline">
-                            @csrf
-                            <button type="submit"
-                                class="text-xs text-gray-400 hover:text-white uppercase tracking-wider font-bold transition">
-                                Log Out
-                            </button>
-                        </form>
-                    </div>
                 @endauth
 
-                @guest
-                    <div class="flex items-center space-x-4">
-                        <a href="{{ route('login') }}"
-                            class="text-sm text-gray-300 hover:text-white font-bold transition uppercase tracking-wide">
-                            Log In
-                        </a>
-                        <a href="{{ route('register') }}"
-                            class="text-sm text-black bg-white hover:bg-gray-200 px-6 py-2 rounded-full font-bold transition transform hover:scale-105">
-                            Sign Up
-                        </a>
-                    </div>
-                @endguest
-            </div>
+                <div class="flex items-center">
+                    @auth
+                        <div class="flex items-center space-x-4">
+                            <span class="text-sm font-bold text-gray-100">
+                                <a href="{{ route('profile.show', Auth::user()) }}" class="text-sm font-bold text-gray-100
+                                hover:text-green-400 transition">
+                                Hello, {{ Auth::user()->name }}
+                                </a>
+                            </span>
+                            <form method="POST" action="{{ route('logout') }}" class="inline">
+                                @csrf
+                                <button type="submit"
+                                    class="text-xs text-gray-400 hover:text-white uppercase tracking-wider font-bold transition">
+                                    Log Out
+                                </button>
+                            </form>
+                        </div>
+                    @endauth
+
+                    @guest
+                        <div class="flex items-center space-x-4">
+                            <a href="{{ route('login') }}"
+                                class="text-sm text-gray-300 hover:text-white font-bold transition uppercase tracking-wide">
+                                Log In
+                            </a>
+                            <a href="{{ route('register') }}"
+                                class="text-sm text-black bg-white hover:bg-gray-200 px-6 py-2 rounded-full font-bold transition transform hover:scale-105">
+                                Sign Up
+                            </a>
+                        </div>
+                    @endguest
+                </div>
         </nav>
     </header>
 

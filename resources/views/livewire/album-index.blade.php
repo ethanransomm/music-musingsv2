@@ -22,7 +22,6 @@
         </div>
     </div>
 
-    {{-- The Grid --}}
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @forelse($albums as $album)
             <a href="{{ route('album.show', $album->id) }}"
@@ -54,7 +53,7 @@
                         <span class="bg-gray-700/50 px-2 py-1 rounded text-gray-400 border border-gray-700 group-hover:border-gray-600 transition">
                             {{ $album->genre }}
                         </span>
-                        <span class="mx-auto"></span> {{-- Spacer --}}
+                        <span class="mx-auto"></span> 
                         <span>
                             @if($album->release_date_precision == 'year')
                                 {{ \Carbon\Carbon::parse($album->release_date)->format('Y') }}

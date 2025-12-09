@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -21,20 +23,64 @@ class ProfileController extends Controller
         ]);
     }
 
+   
+    public function show(User $user): View
+    {
+        $user->load(['rates.album', 'comments.rate.album']);
+        
+        return view('profile.show', [
+            'user' => $user,
+        ]);
+    }
+
     /**
      * Update the user's profile information.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
+    public function updatePicture(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'profile_picture' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+        ]);
+
+        $user = $request->user();
+
+        if ($user->profile_picture) {
+            Storage::disk('public')->delete($user->profile_picture);
+        }
+
+        $path = $request->file('profile_picture')->store('profile-pictures', 'public');
+        
+        $user->profile_picture = $path;
+        $user->save();
+
+        return Redirect::route('profile.edit')->with('picture-updated', true);
+    }
+    public function deletePicture(Request $request): RedirectResponse
+    {
+        $user = $request->user();
+
+        if ($user->profile_picture) {
+            Storage::disk('public')->delete($user->profile_picture);
+            $user->profile_picture = null;
+            $user->save();
+        }
+
+        return Redirect::route('profile.edit')->with('picture-deleted', true);
     }
 
     /**
@@ -47,6 +93,10 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
+
+        if ($user->profile_picture) {
+            Storage::disk('public')->delete($user->profile_picture);
+        }
 
         Auth::logout();
 

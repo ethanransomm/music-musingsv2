@@ -22,6 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'user_admin',
+        'bio',
+        'profile_picture',
     ];
 
     /**
@@ -49,7 +51,11 @@ class User extends Authenticatable
     }
 
     public function rates(){
-        return $this->hasMany(Rate::class, 'user_id')->withPivot('comment', 'score');
+    return $this->hasMany(Rate::class, 'user_id');
+}
+
+    public function comments(){
+        return $this->hasMany(Comment::class, 'user_id');
     }
 }
 

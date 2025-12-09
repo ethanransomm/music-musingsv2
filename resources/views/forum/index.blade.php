@@ -74,8 +74,10 @@
                                     {{ substr($rate->user->name ?? 'U', 0, 1) }}
                                 </div>
                                 <span>
-                                    Rated by <span
-                                        class="font-medium text-gray-300">{{ $rate->user->name ?? 'Deleted User' }}</span>
+                                    <a href="{{ route('profile.show', $rate->user->id) }}"
+                                        class="font-medium text-gray-300 hover:text-green-400 transition">
+                                        {{ $rate->user->name ?? 'Deleted User' }}
+                                    </a>
                                 </span>
                             </div>
                             <span class="text-xs">
@@ -170,10 +172,10 @@
                         if (data.success) {
                             const list = document.getElementById(`comments-list-${id}`);
                             const newComment = `
-                                    <div class="bg-gray-700/50 p-2 rounded text-sm border-l-2 border-green-500">
-                                        <span class="font-bold text-green-400">${data.user}:</span> 
-                                        <span class="text-gray-300">${data.body}</span>
-                                    </div>`;
+                                        <div class="bg-gray-700/50 p-2 rounded text-sm border-l-2 border-green-500">
+                                            <span class="font-bold text-green-400">${data.user}:</span> 
+                                            <span class="text-gray-300">${data.body}</span>
+                                        </div>`;
 
                             list.insertAdjacentHTML('afterbegin', newComment);
                             this.reset();

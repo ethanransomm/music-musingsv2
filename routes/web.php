@@ -63,4 +63,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/user/{user}', [ProfileController::class, 'show'])->name('profile.show');
+
+Route::patch('/profile/picture', [ProfileController::class, 'updatePicture'])->name('profile.picture.update');
+Route::delete('/profile/picture', [ProfileController::class, 'deletePicture'])->name('profile.picture.delete');
+    
+
 require __DIR__.'/auth.php';

@@ -52,39 +52,51 @@
         <h2 class="text-2xl font-bold text-white mb-6">Recent Reviews</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach($recentReviews as $review)
-                <div
-                    class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-gray-600 transition duration-200 flex flex-col h-full relative group">
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-gray-600 transition duration-200 flex flex-col h-full">
 
                     <div class="flex items-center space-x-3 mb-4">
-                        <div
-                            class="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-black font-bold text-lg">
-                            {{ substr($review->user->name ?? 'U', 0, 1) }}
-                        </div>
-                        <div>
-                            <div class="text-white font-bold text-sm">{{ $review->user->name ?? 'User' }}</div>
+                        <a href="{{ route('profile.show', $review->user) }}" class="flex-shrink-0">
+                            @if($review->user->profile_picture)
+                                <img src="{{ asset('storage/' . $review->user->profile_picture) }}" 
+                                     alt="{{ $review->user->name }}"
+                                     class="w-10 h-10 rounded-full object-cover border-2 border-gray-700 hover:border-green-500 transition">
+                            @else
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-black font-bold text-lg border-2 border-gray-700 hover:border-green-500 transition">
+                                    {{ substr($review->user->name ?? 'U', 0, 1) }}
+                                </div>
+                            @endif
+                        </a>
+                        <div class="flex-1 min-w-0">
+                            <a href="{{ route('profile.show', $review->user) }}"
+                                class="font-medium text-gray-300 hover:text-green-400 transition block truncate">
+                                {{ $review->user->name ?? 'Deleted User' }}
+                            </a>
                             <div class="text-xs text-gray-400">
                                 rated
                                 <a href="{{ route('album.show', $review->album->id) }}"
-                                    class="text-green-400 hover:underline relative z-10">
+                                    class="text-green-400 hover:underline">
                                     {{ $review->album->title }}
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="mb-4">
+                    <div class="flex-1">
                         <div class="flex text-green-500 text-sm mb-2">
                             @for($i = 0; $i < $review->score; $i++) ★ @endfor
                         </div>
 
-                        <h4 class="text-gray-200 font-bold mb-1 line-clamp-1">
-                            <a href="{{ route('forum.index') }}#review-{{ $review->id }}"
-                                class="hover:text-white before:absolute before:inset-0">
+                        @if($review->title)
+                            <h4 class="text-gray-200 font-bold mb-1 line-clamp-1">
                                 {{ $review->title }}
-                            </a>
-                        </h4>
+                            </h4>
+                        @endif
 
                         <p class="text-gray-400 text-sm line-clamp-3 italic">"{{ $review->comment }}"</p>
+                    </div>
+
+                    <div class="mt-4 pt-4 border-t border-gray-700">
+                        <span class="text-xs text-gray-500">{{ $review->created_at->diffForHumans() }}</span>
                     </div>
 
                 </div>
@@ -109,7 +121,8 @@
                         </span>
                     </div>
                     <p class="text-sm text-gray-300 font-medium truncate group-hover:text-green-500 transition">
-                        {{ $artist->artistName }}</p>
+                        {{ $artist->artistName }}
+                    </p>
                 </a>
             @endforeach
         </div>
