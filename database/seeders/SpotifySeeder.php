@@ -27,6 +27,11 @@ class SpotifySeeder extends Seeder
             'The Clash',
             'The Strokes',
             'The Libertines',
+            'Pulp',
+            'my bloody valentine',
+            'Geese',
+            'Leonard Cohen',
+            'Bob Dylan',
         ];
 
         foreach ($targetArtists as $artistName) {
@@ -43,8 +48,9 @@ class SpotifySeeder extends Seeder
             $unprocessedGenres = $artistData['genres'] ?? [];
             $albumGenre = !empty($unprocessedGenres) ? ucwords($unprocessedGenres[0]) : 'Alternative';
 
-            $artist = Artist::firstOrCreate(
-                ['artistName' => $artistData['name']]
+            $artist = Artist::updateOrCreate(
+                ['artistName' => $artistData['name']],
+                ['image_url' => $artistData['image_url']] 
             );
             
             $this->command->info("  - Found ID: " . $artist->id);

@@ -77,7 +77,7 @@
         @endforelse
     </div>
 
-    <div class="mt-12">
+    <div class="mt-16 flex flex-col sm:flex-row items-center justify-between gap-8">
         {{ $albums->links() }} 
     </div>
 </div>

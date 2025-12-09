@@ -45,8 +45,13 @@ Route::post('/forum/{id}/comments', [CommentController::class, 'store'])->name('
 Route::get('/forum/create', CreateReview::class)->name('forum.create');
 // Route::post('/forum', [RateController::class, 'store'])->name('forum.store');
 
+Route::get('/forum/{id}/edit', [RateController::class, 'edit'])->name('forum.edit');
+Route::patch('/forum/{id}', [RateController::class, 'update'])->name('forum.update');
+
 Route::delete('/forum/{id}', [RateController::class, 'delete']);
-Route::delete('/forum/comments/{id}', [CommentController::class, 'delete']);
+Route::post('/forum/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::delete('/forum/comments/{id}', [CommentController::class, 'delete'])->name('comments.delete');
+Route::patch('/comments/{id}', [CommentController::class, 'update'])->name('comments.update')->middleware('auth');
 
 Route::post('/notifications/mark-all-read', function (Request $request) {
     auth()->user()->unreadNotifications->markAsRead();

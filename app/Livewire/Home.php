@@ -13,7 +13,7 @@ class Home extends Component
     public function render()
     {
         return view('livewire.home', [
-            'featuredAlbums' => Album::inRandomOrder()->take(8)->get(),
+            'featuredAlbums' => Album::inRandomOrder()->take(16)->get(),
             
             'featuredArtists' => Artist::latest()->take(6)->get(),
             

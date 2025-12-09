@@ -1,55 +1,59 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Comment;
-use App\Models\Rate;
-use App\Notifications\CommentNotification;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
     public function store(Request $request, $id)
-{
-    
-    $request->validate([
-        'body' => 'required|max:500'
-    ]);
+    {
+        $validated = $request->validate([
+            'body' => 'required|string|max:1000',
+        ]);
 
-    $rate = Rate::findOrFail($id);
+        Comment::create([
+            'user_id' => auth()->id(),
+            'rate_id' => $id,
+            'content' => $validated['body'],
+        ]);
 
-    $comment = Comment::create([
-        'user_id' => auth()->id(),
-        'rate_id' => $id,
-        'content' => $request->body, 
-    ]);
-    if (auth()->id() !== $rate->user_id) {
-        $poster = $rate->user; 
-        $poster->notify(new CommentNotification(auth()->user()->name, $rate->album->title));
+        return response()->json([
+            'success' => true,
+            'user' => auth()->user()->name,
+            'body' => $validated['body'],
+        ]);
     }
 
-    return response()->json([
-        'success' => true,
-        'user' => auth()->user()->name,
-        'body' => $comment->content,
-        'created_at' => $comment->created_at->diffForHumans()
-    ]);
-}
-
-      public function delete($id) {
+    public function update(Request $request, $id)
+    {
         $comment = Comment::findOrFail($id);
-        $user = auth()->user();
-        if (!$user) {
-        return response()->json(['error' => 'Unauthenticated.'], 401);
-        } 
+
         
-        if ($user->user_admin !== true && $user->id !== $comment->user_id) {
-        return response()->json(['error' => 'Forbidden.'], 403);
-        } else {
-             $comment->delete();
-             return redirect()->route('forum.index')->with('success', 'Comment deleted successfully!');
+        if (auth()->id() !== $comment->user_id && !auth()->user()->user_admin) {
+            abort(403, 'Unauthorized action.');
         }
-       
+
+        $validated = $request->validate([
+            'content' => 'required|string|max:1000',
+        ]);
+
+        $comment->update($validated);
+
+        return back()->with('success', 'Comment updated successfully!');
     }
 
+    public function destroy($id)
+    {
+        $comment = Comment::findOrFail($id);
+
+        if (auth()->id() !== $comment->user_id && !auth()->user()->user_admin) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $comment->delete();
+
+        return back()->with('success', 'Comment deleted successfully!');
+    }
 }

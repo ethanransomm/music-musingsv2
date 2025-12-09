@@ -15,6 +15,7 @@ class Artist extends Model
     protected $fillable = [
         'artistName',
         'genre',
+        'image_url',
     ];
 
     public function albums()

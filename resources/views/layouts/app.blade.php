@@ -7,42 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Music Musings @yield('title') </title>
     @livewireStyles
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        green: {
-                            400: '#a78bfa',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                        },
-                        indigo: {
-                            400: '#a78bfa',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                        },
-
-                        gray: {
-                            100: '#f9f9f9',
-                            200: '#e5e5e5',
-                            300: '#d4d4d4',
-                            400: '#a3a3a3',
-                            500: '#737373',
-                            600: '#525252',
-                            700: '#282828',
-                            800: '#181818',
-                            900: '#121212',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="bg-gray-900 text-gray-100 antialiased font-sans">
@@ -147,6 +112,7 @@
                         </div>
                     @endguest
                 </div>
+            </div>
         </nav>
     </header>
 
@@ -161,6 +127,9 @@
     <footer class="py-12 text-center border-t border-gray-800 mt-12">
         <p class="text-gray-400 text-sm">&copy; 2025 Music Musings. All rights reserved.</p>
     </footer>
+    
+    {{-- Alpine.js for dropdown functionality --}}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @livewireScripts
 </body>
 

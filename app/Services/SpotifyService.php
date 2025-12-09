@@ -45,15 +45,27 @@ class SpotifyService
     }
 
     public function searchArtist($name)
-    {
-        $data = $this->makeRequest('search', [
-            'q' => $name,
-            'type' => 'artist',
-            'limit' => 1
-        ]);
+{
+    $data = $this->makeRequest('search', [
+        'q' => $name,
+        'type' => 'artist',
+        'limit' => 1
+    ]);
 
-        return $data['artists']['items'][0] ?? null;
+    $artist = $data['artists']['items'][0] ?? null;
+    
+    if ($artist) {
+        return [
+            'id' => $artist['id'],
+            'name' => $artist['name'],
+            'image_url' => $artist['images'][0]['url'] ?? null, 
+            'genres' => $artist['genres'] ?? [],
+            'popularity' => $artist['popularity'] ?? 0,
+        ];
     }
+    
+    return null;
+}
 
     public function getArtistAlbums($artistId)
     {

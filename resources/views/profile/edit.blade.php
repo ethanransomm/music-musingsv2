@@ -208,7 +208,7 @@
         </div>
     </div>
 
-    <div id="deleteModal" class="hidden fixed inset-0 bg-black/75 flex items-center justify-center z-50">
+    <div id="deleteModal" class="hidden fixed inset-0 bg-black/75items-center justify-center z-50">
         <div class="bg-gray-800 rounded-xl max-w-md w-full mx-4 p-6 border border-gray-700">
             <h3 class="text-xl font-bold text-white mb-4">Are you sure?</h3>
             <p class="text-gray-400 mb-6">
