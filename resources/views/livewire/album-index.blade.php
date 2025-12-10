@@ -3,7 +3,7 @@
     <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
         
         <div class="w-full md:w-auto">
-            <h1 class="text-4xl font-extrabold text-white tracking-tight mb-2">All Albums</h1>
+            <h1 class="text-4xl font-extrabold text-gray-100 tracking-tight mb-2">All Albums</h1>
             <p class="text-gray-400">Explore our library of {{ $albums->total() }} releases.</p>
         </div>
 
@@ -12,7 +12,7 @@
             <input wire:model.live.debounce.300ms="search" 
                    type="text" 
                    placeholder="Search albums or artists..."
-                   class="w-full pl-12 pr-4 py-3 bg-gray-800 border border-transparent text-white placeholder-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-gray-700 transition duration-200 shadow-sm text-sm font-medium">
+                   class="w-full pl-12 pr-4 py-3 bg-gray-800 border border-transparent text-gray-100 placeholder-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-gray-700 transition duration-200 shadow-sm text-sm font-medium">
             
             <div class="absolute left-4 top-3.5 text-gray-400">
                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="p-5">
-                    <h3 class="font-bold text-white text-lg truncate group-hover:text-green-400 transition">
+                    <h3 class="font-bold text-gray-100 text-lg truncate group-hover:text-green-400 transition">
                         {{ $album->title }}
                     </h3>
                     <p class="text-sm text-gray-400 truncate mt-1 group-hover:text-gray-300 transition">
@@ -71,7 +71,7 @@
                 <div class="inline-block p-6 rounded-full bg-gray-800 mb-4 animate-pulse">
                     <svg class="w-12 h-12 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-2">No albums found</h3>
+                <h3 class="text-xl font-bold text-gray-100 mb-2">No albums found</h3>
                 <p class="text-gray-400">We couldn't find anything matching "{{ $search }}".</p>
             </div>
         @endforelse

@@ -3,14 +3,14 @@
         
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-8">
             <div class="space-y-3">
-                <h1 class="text-5xl font-black text-white tracking-tight">Artists</h1>
+                <h1 class="text-5xl font-black text-gray-100 tracking-tight">Artists</h1>
                 <p class="text-gray-400 text-lg font-light">Browse our collection of <span class="text-green-400 font-semibold">{{ $artists->total() }}</span> artists.</p>
             </div>
             <div class="relative w-full md:w-96">
                 <input wire:model.live.debounce.300ms="search" 
                        type="text" 
                        placeholder="Search for artists..."
-                       class="w-full pl-12 pr-4 py-4 bg-gray-800/50 backdrop-blur-sm border border-gray-700 text-white placeholder-gray-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent focus:bg-gray-800 transition-all duration-300 shadow-xl text-sm font-medium">
+                       class="w-full pl-12 pr-4 py-4 bg-gray-800/50 backdrop-blur-sm border border-gray-700 text-gray-100 placeholder-gray-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent focus:bg-gray-800 transition-all duration-300 shadow-xl text-sm font-medium">
                 <div class="absolute left-4 top-4 text-gray-400">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -35,7 +35,7 @@
                             @endif
                         </div>
                     </div>
-                    <h3 class="font-bold text-white text-lg truncate w-full group-hover:text-green-400 transition-colors duration-300 mb-2">
+                    <h3 class="font-bold text-gray-100 text-lg truncate w-full group-hover:text-green-400 transition-colors duration-300 mb-2">
                         {{ $artist->artistName }}
                     </h3>
                     <span class="text-xs font-semibold px-4 py-2 bg-gray-800/50 backdrop-blur-sm text-gray-400 border border-gray-700 rounded-full group-hover:border-green-500 group-hover:text-green-400 group-hover:bg-gray-800 transition-all duration-300 shadow-lg">
@@ -47,7 +47,7 @@
                     <div class="inline-block p-6 rounded-full bg-gray-800/50 backdrop-blur-sm mb-6 animate-pulse">
                         <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">No artists found</h3>
+                    <h3 class="text-2xl font-bold text-gray-100 mb-2">No artists found</h3>
                     <p class="text-gray-400 font-light">Try adjusting your search terms.</p>
                 </div>
             @endforelse

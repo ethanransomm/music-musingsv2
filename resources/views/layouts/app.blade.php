@@ -17,15 +17,14 @@
 
             <div class="flex items-center space-x-1">
                 <a href="/home"
-                    class="text-gray-300 hover:text-white hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">Home</a>
+                    class="text-gray-100 hover:text-green-400 hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">Home</a>
                 <a href="/artists"
-                    class="text-gray-300 hover:text-white hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">Artists</a>
+                    class="text-gray-100 hover:text-green-400 hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">Artists</a>
                 <a href="/albums"
-                    class="text-gray-300 hover:text-white hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">Albums</a>
+                    class="text-gray-100 hover:text-green-400 hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">Albums</a>
                 <a href="/forum"
-                    class="text-gray-300 hover:text-white hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">Forum</a>
+                    class="text-gray-100 hover:text-green-400 hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-bold transition">Forum</a>
             </div>
-
             <div class="flex items-center gap-6">
                 @auth
                     <div class="relative" x-data="{ open: false }">
@@ -39,7 +38,7 @@
 
                             @if(auth()->user()->unreadNotifications->count() > 0)
                                 <span
-                                    class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full">
+                                    class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-green-600 rounded-full">
                                     {{ auth()->user()->unreadNotifications->count() }}
                                 </span>
                             @endif
@@ -85,8 +84,8 @@
                         <div class="flex items-center space-x-4">
                             <span class="text-sm font-bold text-gray-100">
                                 <a href="{{ route('profile.show', Auth::user()) }}" class="text-sm font-bold text-gray-100
-                                hover:text-green-400 transition">
-                                Hello, {{ Auth::user()->name }}
+                                    hover:text-green-400 transition">
+                                    Hello, {{ Auth::user()->name }}
                                 </a>
                             </span>
                             <form method="POST" action="{{ route('logout') }}" class="inline">
@@ -102,11 +101,11 @@
                     @guest
                         <div class="flex items-center space-x-4">
                             <a href="{{ route('login') }}"
-                                class="text-sm text-gray-300 hover:text-white font-bold transition uppercase tracking-wide">
+                                class="text-sm text-gray-300 hover:text-green-400 font-bold transition uppercase tracking-wide">
                                 Log In
                             </a>
                             <a href="{{ route('register') }}"
-                                class="text-sm text-black bg-white hover:bg-gray-200 px-6 py-2 rounded-full font-bold transition transform hover:scale-105">
+                                class="text-sm text-gray-300 hover:text-green-400 font-bold transition uppercase tracking-wide">
                                 Sign Up
                             </a>
                         </div>
@@ -127,9 +126,7 @@
     <footer class="py-12 text-center border-t border-gray-800 mt-12">
         <p class="text-gray-400 text-sm">&copy; 2025 Music Musings. All rights reserved.</p>
     </footer>
-    
-    {{-- Alpine.js for dropdown functionality --}}
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     @livewireScripts
 </body>
 

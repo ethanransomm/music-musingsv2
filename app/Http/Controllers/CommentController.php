@@ -44,7 +44,7 @@ class CommentController extends Controller
         return back()->with('success', 'Comment updated successfully!');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $comment = Comment::findOrFail($id);
 

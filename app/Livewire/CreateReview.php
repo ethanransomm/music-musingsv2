@@ -43,6 +43,12 @@ class CreateReview extends Component
 
     public function save()
     {
+
+        if (!auth()->check()) {
+            session()->flash('error', 'You must be logged in to submit a review.');
+            return redirect()->route('login');
+        }
+
         $this->validate();
         $existingRate = Rate::where('user_id', auth()->id())
             ->where('album_id', $this->album_id)
@@ -51,7 +57,7 @@ class CreateReview extends Component
         if ($existingRate) {
             $this->addError('album_id', 'You have already reviewed this album. Please edit your existing review instead.');
             return;
-        }    
+        }
 
         Rate::create([
             'user_id' => auth()->id(),
@@ -69,7 +75,8 @@ class CreateReview extends Component
     {
         $searchResults = collect();
         if (strlen($this->albumSearch) > 1) {
-            $searchResults = Album::where('title', 'like', '%' . $this->albumSearch . '%')
+            $searchResults = Album::with('artist')
+                ->where('title', 'like', '%' . $this->albumSearch . '%')
                 ->take(5)
                 ->get();
         }
