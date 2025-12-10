@@ -23,7 +23,7 @@
             <div>
                 <label for="title" class="block text-sm font-medium text-gray-700">Album Title</label>
                 <input type="text" name="title" id="title" required 
-                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('title') border-red-500 @enderror" 
+                       class="mt-1 block w-full rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('title') border-red-500 @enderror" 
                        value="{{ old('title') }}">
                 @error('title')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -34,7 +34,7 @@
                 <label for="artist_id" class="block text-sm font-medium text-gray-700">Artist</label>
                 @if (isset($artists) && $artists->isNotEmpty())
                     <select name="artist_id" id="artist_id" required 
-                            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 @error('artist_id') border-red-500 @enderror">
+                            class="mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 @error('artist_id') border-red-500 @enderror">
                         <option value="">-- Select an Artist --</option>
                         @foreach ($artists as $artist)
                             <option value="{{ $artist->id }}" {{ old('artist_id') == $artist->id ? 'selected' : '' }}>
@@ -52,7 +52,7 @@
             <div>
                 <label for="release_date" class="block text-sm font-medium text-gray-700">Release Date</label>
                 <input type="date" name="release_date" id="release_date" 
-                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('release_date') border-red-500 @enderror" 
+                       class="mt-1 block w-full rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('release_date') border-red-500 @enderror" 
                        value="{{ old('release_date') }}">
                 @error('release_date')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -62,7 +62,7 @@
             <div>
                 <label for="genre" class="block text-sm font-medium text-gray-700">Genre</label>
                 <input type="text" name="genre" id="genre" 
-                       class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('genre') border-red-500 @enderror" 
+                       class="mt-1 block w-full rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('genre') border-red-500 @enderror" 
                        value="{{ old('genre') }}">
                 @error('genre')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>

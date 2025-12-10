@@ -69,8 +69,8 @@
                         <div class="text-sm text-gray-500 flex justify-between items-center pt-2">
                             <div class="flex items-center space-x-2">
                                 <a href="{{ route('profile.show', $rate->user->id) }}">
-                                    @if($rate->user->profile_picture)
-                                        <img src="{{ asset('storage/' . $rate->user->profile_picture) }}" 
+                                    @if($rate->user->profile->profile_picture)
+                                        <img src="{{ asset('storage/' . $rate->user->profile->profile_picture) }}" 
                                              alt="{{ $rate->user->name }}"
                                              class="w-6 h-6 rounded-full object-cover">
                                     @else

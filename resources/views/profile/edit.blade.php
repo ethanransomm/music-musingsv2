@@ -15,8 +15,8 @@
                 @method('PATCH')
 
                 <div class="flex items-center space-x-6">
-                    @if(auth()->user()->profile_picture)
-                        <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" 
+                    @if(auth()->user()->profile && auth()->user()->profile->profile_picture)
+                        <img src="{{ asset('storage/' . auth()->user()->profile->profile_picture) }}"
                              alt="{{ auth()->user()->name }}"
                              class="w-24 h-24 rounded-full object-cover border-4 border-gray-700">
                     @else
@@ -112,7 +112,7 @@
                               rows="4"
                               maxlength="500"
                               placeholder="Tell us about yourself..."
-                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition">{{ old('bio', $user->bio) }}</textarea>
+                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition">{{ old('bio', $user->profile->bio) }}</textarea>
                     <p class="mt-2 text-xs text-gray-500">Maximum 500 characters</p>
                     @error('bio')
                         <p class="mt-2 text-sm text-red-400">{{ $message }}</p>

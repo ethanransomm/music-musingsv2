@@ -23,11 +23,11 @@ class ProfileController extends Controller
         ]);
     }
 
-   
+
     public function show(User $user): View
     {
-        $user->load(['rates.album', 'comments.rate.album']);
-        
+        $user->load(['rates.album', 'comments.rate.album', 'profile']);
+
         return view('profile.show', [
             'user' => $user,
         ]);
@@ -39,12 +39,22 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
-        
+
         $user->fill($request->validated());
+
+        $validated = $request->validated();
+
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+
 
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
+
+        $user->profile->update([
+            'bio' => $validated['bio'] ?? null,
+        ]);
 
         $user->save();
 
@@ -64,7 +74,7 @@ class ProfileController extends Controller
         }
 
         $path = $request->file('profile_picture')->store('profile-pictures', 'public');
-        
+
         $user->profile->profile_picture = $path;
         $user->profile->save();
 

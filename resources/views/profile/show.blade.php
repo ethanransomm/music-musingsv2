@@ -6,8 +6,8 @@
     <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden mb-8">
         <div class="p-8 sm:flex sm:items-center">
             <div class="sm:flex-shrink-0">
-                @if($user->profile_picture)
-                    <img src="{{ asset('storage/' . $user->profile_picture) }}" 
+                @if($user->profile->profile_picture)
+                    <img src="{{ asset('storage/' . $user->profile->profile_picture) }}" 
                          alt="{{ $user->name }}"
                          class="w-32 h-32 rounded-full object-cover shadow-lg mx-auto sm:mx-0 border-4 border-gray-700">
                 @else
@@ -20,8 +20,8 @@
                 <h1 class="text-3xl font-extrabold text-white">{{ $user->name }}</h1>
                 <p class="text-gray-400 text-sm mt-1">Joined {{ $user->created_at->format('F Y') }}</p>
                 
-                @if($user->bio)
-                    <p class="mt-4 text-gray-300 max-w-2xl">{{ $user->bio }}</p>
+                @if($user->profile->bio)
+                    <p class="mt-4 text-gray-300 max-w-2xl">{{ $user->profile->bio }}</p>
                 @else
                     <p class="mt-4 text-gray-500 italic">No bio yet.</p>
                 @endif
