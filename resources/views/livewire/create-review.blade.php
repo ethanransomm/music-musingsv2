@@ -47,7 +47,7 @@
                                         
                                         <div>
                                             <div class="text-white font-bold text-sm group-hover:text-green-400 transition">{{ $result->title }}</div>
-                                            <div class="text-xs text-gray-400">{{ $result->artist->artistName ?? 'Unknown' }}</div>
+                                            <div class="text-xs text-gray-400">{{ $result->artist->artist_name ?? 'Unknown' }}</div>
                                         </div>
                                     </li>
                                 @endforeach

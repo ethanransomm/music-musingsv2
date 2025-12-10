@@ -25,7 +25,7 @@ class AlbumIndex extends Component
             ->when($this->search, function($query) {
                 $query->where('title', 'like', '%'.$this->search.'%')
                       ->orWhereHas('artist', function($q) {
-                          $q->where('artistName', 'like', '%'.$this->search.'%');
+                          $q->where('artist_name', 'like', '%'.$this->search.'%');
                       });
             })
             ->latest()

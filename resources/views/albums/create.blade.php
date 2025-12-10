@@ -38,7 +38,7 @@
                         <option value="">-- Select an Artist --</option>
                         @foreach ($artists as $artist)
                             <option value="{{ $artist->id }}" {{ old('artist_id') == $artist->id ? 'selected' : '' }}>
-                                {{ $artist->artistName }}
+                                {{ $artist->artist_name }}
                             </option>
                         @endforeach
                     </select>

@@ -3,15 +3,15 @@
         <div class="w-32 h-32 rounded-full overflow-hidden shadow-lg mb-6 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
             @if($artist->image_url)
                 <img src="{{ $artist->image_url }}" 
-                     alt="{{ $artist->artistName }}"
+                     alt="{{ $artist->artist_name }}"
                      class="w-full h-full object-cover">
             @else
                 <span class="text-white text-4xl font-bold">
-                    {{ substr($artist->artistName, 0, 1) }}
+                    {{ substr($artist->artist_name, 0, 1) }}
                 </span>
             @endif
         </div>
-        <h1 class="text-4xl font-extrabold text-white tracking-tight mb-2">{{ $artist->artistName }}</h1>
+        <h1 class="text-4xl font-extrabold text-white tracking-tight mb-2">{{ $artist->artist_name }}</h1>
         <p class="text-gray-400 text-lg">{{ $artist->albums->count() }} Releases in Database</p>
     </div>
 

@@ -29,7 +29,7 @@
                     @endif
                     <div>
                         <p class="text-white font-bold">{{ $rate->album->title }}</p>
-                        <p class="text-sm text-gray-400">{{ $rate->album->artist->artistName ?? 'Unknown Artist' }}</p>
+                        <p class="text-sm text-gray-400">{{ $rate->album->artist->artist_name ?? 'Unknown Artist' }}</p>
                     </div>
                 </div>
             </div>

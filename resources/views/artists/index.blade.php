@@ -10,8 +10,8 @@
         <ul>
             @foreach ($artists as $artist)
                 <li>
-                    <strong><a href="/artist/{{ rawurlencode($artist->artistName) }}">
-                            {{ $artist->artistName }} </a></strong>
+                    <strong><a href="/artist/{{ rawurlencode($artist->artist_name) }}">
+                            {{ $artist->artist_name }} </a></strong>
                 </li>
             @endforeach
         </ul>

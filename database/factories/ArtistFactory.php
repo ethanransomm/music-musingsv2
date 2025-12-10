@@ -14,7 +14,7 @@ class ArtistFactory extends Factory
     {
 
         return [
-            "artistName"=> fake()->name(),
+            "artist_name"=> fake()->name(),
             "genre"=> fake()->words(2, true)
         ];
     }

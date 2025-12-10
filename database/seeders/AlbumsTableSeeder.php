@@ -19,7 +19,7 @@ class AlbumsTableSeeder extends Seeder
             return; 
         }
 
-            $artist= Artist::where('artistName', 'Interpol')->first();
+            $artist= Artist::where('artist_name', 'Interpol')->first();
 
             if ($artist) {
              Album::create([
@@ -33,7 +33,7 @@ class AlbumsTableSeeder extends Seeder
 
 
 
-            $artist= Artist::where('artistName', 'The Strokes')->first();
+            $artist= Artist::where('artist_name', 'The Strokes')->first();
 
             if ($artist) {
              Album::create([
@@ -45,7 +45,7 @@ class AlbumsTableSeeder extends Seeder
             }
 
 
-            $artist = Artist::where('artistName', 'The White Stripes')->first();
+            $artist = Artist::where('artist_name', 'The White Stripes')->first();
 
             if ($artist) {    
              Album::create([
@@ -56,7 +56,7 @@ class AlbumsTableSeeder extends Seeder
             ]);
             }
 
-            $artist = Artist::where('artistName', 'Madvillain')->first();
+            $artist = Artist::where('artist_name', 'Madvillain')->first();
 
             if ($artist) {
             Album::create([
@@ -67,7 +67,7 @@ class AlbumsTableSeeder extends Seeder
             ]);
             }
 
-            $artist = Artist::where('artistName', 'Roy Orbison')->first();
+            $artist = Artist::where('artist_name', 'Roy Orbison')->first();
 
             if ($artist) {
             Album::create([

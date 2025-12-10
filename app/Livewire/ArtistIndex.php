@@ -24,9 +24,9 @@ class ArtistIndex extends Component
         $artists = Artist::query()
             ->withCount('albums')
             ->when($this->search, function($query) {
-                $query->where('artistName', 'like', '%'.$this->search.'%');
+                $query->where('artist_name', 'like', '%'.$this->search.'%');
             })
-            ->orderBy('artistName')
+            ->orderBy('artist_name')
             ->paginate(24);
 
         return view('livewire.artist-index', [

@@ -7,7 +7,7 @@
         <ul>
             @foreach ($albums as $artist)
                     <li>
-                        <strong>{{ $artist->artistName }}</strong>
+                        <strong>{{ $artist->artist_name }}</strong>
                         <ul>
                             @foreach ($artist->albums as $album)
                                         <strong>

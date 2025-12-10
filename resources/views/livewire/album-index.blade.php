@@ -46,7 +46,7 @@
                         {{ $album->title }}
                     </h3>
                     <p class="text-sm text-gray-400 truncate mt-1 group-hover:text-gray-300 transition">
-                        {{ $album->artist->artistName ?? 'Unknown Artist' }}
+                        {{ $album->artist->artist_name ?? 'Unknown Artist' }}
                     </p>
 
                     <div class="flex items-center text-xs text-gray-500 mt-4 font-mono uppercase tracking-wide">

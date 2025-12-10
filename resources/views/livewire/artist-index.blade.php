@@ -26,17 +26,17 @@
                         <div class="w-full h-full rounded-full overflow-hidden border-4 border-gray-700 group-hover:border-green-500 shadow-xl group-hover:shadow-2xl group-hover:shadow-green-500/30 transition-all duration-300 bg-gray-800 flex items-center justify-center ring-4 ring-transparent group-hover:ring-green-500/20">
                             @if($artist->image_url)
                                 <img src="{{ $artist->image_url }}" 
-                                     alt="{{ $artist->artistName }}"
+                                     alt="{{ $artist->artist_name }}"
                                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             @else
                                 <span class="text-4xl font-bold text-gray-400 group-hover:text-green-400 transition-colors duration-300">
-                                    {{ substr($artist->artistName, 0, 1) }}
+                                    {{ substr($artist->artist_name, 0, 1) }}
                                 </span>
                             @endif
                         </div>
                     </div>
                     <h3 class="font-bold text-gray-100 text-lg truncate w-full group-hover:text-green-400 transition-colors duration-300 mb-2">
-                        {{ $artist->artistName }}
+                        {{ $artist->artist_name }}
                     </h3>
                     <span class="text-xs font-semibold px-4 py-2 bg-gray-800/50 backdrop-blur-sm text-gray-400 border border-gray-700 rounded-full group-hover:border-green-500 group-hover:text-green-400 group-hover:bg-gray-800 transition-all duration-300 shadow-lg">
                         {{ $artist->albums_count }} {{ Str::plural('Album', $artist->albums_count) }}

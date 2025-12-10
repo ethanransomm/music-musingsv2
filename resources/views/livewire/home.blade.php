@@ -67,7 +67,7 @@
                             class="font-bold text-white text-lg truncate group-hover:text-green-400 transition-colors duration-300 mb-1">
                             {{ $album->title }}
                         </h3>
-                        <p class="text-sm text-gray-400 truncate font-light">{{ $album->artist->artistName ?? 'Unknown' }}
+                        <p class="text-sm text-gray-400 truncate font-light">{{ $album->artist->artist_name ?? 'Unknown' }}
                         </p>
                     </a>
                 @endforeach
@@ -173,18 +173,18 @@
                         <div
                             class="aspect-square rounded-full bg-gray-800/50 backdrop-blur-sm border-4 border-gray-700 group-hover:border-green-500 transition-all duration-300 overflow-hidden mb-4 flex items-center justify-center shadow-xl group-hover:shadow-2xl group-hover:shadow-green-500/30 ring-4 ring-transparent group-hover:ring-green-500/20">
                             @if($artist->image_url)
-                                <img src="{{ $artist->image_url }}" alt="{{ $artist->artistName }}"
+                                <img src="{{ $artist->image_url }}" alt="{{ $artist->artist_name }}"
                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             @else
                                 <span
                                     class="text-3xl font-bold text-gray-400 group-hover:text-green-400 transition-colors duration-300">
-                                    {{ substr($artist->artistName, 0, 1) }}
+                                    {{ substr($artist->artist_name, 0, 1) }}
                                 </span>
                             @endif
                         </div>
                         <p
                             class="text-sm text-gray-300 font-semibold truncate group-hover:text-green-400 transition-colors duration-300">
-                            {{ $artist->artistName }}
+                            {{ $artist->artist_name }}
                         </p>
                     </a>
                 @endforeach

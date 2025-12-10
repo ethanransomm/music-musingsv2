@@ -22,7 +22,7 @@
                             <h2 class="text-lg text-green-500 font-medium hover:text-green-400 transition">
                                 @if($album->artist)
                                     <a href="{{ route('artist.show', $album->artist->id) }}">
-                                        {{ $album->artist->artistName }}
+                                        {{ $album->artist->artist_name }}
                                     </a>
                                 @else
                                     <span class="text-gray-500">Unknown Artist</span>

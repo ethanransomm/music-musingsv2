@@ -34,14 +34,14 @@ class SpotifySeeder extends Seeder
             'Bob Dylan',
         ];
 
-        foreach ($targetArtists as $artistName) {
-            $this->command->info("Finding: $artistName's Albums");
+        foreach ($targetArtists as $artist_name) {
+            $this->command->info("Finding: $artist_name's Albums");
 
            
-            $artistData = $spotify->searchArtist($artistName);
+            $artistData = $spotify->searchArtist($artist_name);
 
             if (!$artistData) {
-                $this->command->error("  - Artist not found: $artistName");
+                $this->command->error("  - Artist not found: $artist_name");
                 continue; 
             }
 
@@ -49,7 +49,7 @@ class SpotifySeeder extends Seeder
             $albumGenre = !empty($unprocessedGenres) ? ucwords($unprocessedGenres[0]) : 'Alternative';
 
             $artist = Artist::updateOrCreate(
-                ['artistName' => $artistData['name']],
+                ['artist_name' => $artistData['name']],
                 ['image_url' => $artistData['image_url']] 
             );
             

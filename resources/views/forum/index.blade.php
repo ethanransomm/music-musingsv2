@@ -51,7 +51,7 @@
                                     </a>
                                 </h2>
                                 <p class="text-sm text-gray-500 mt-1">
-                                    {{ $rate->album->artist->artistName ?? 'Unknown Artist' }}
+                                    {{ $rate->album->artist->artist_name ?? 'Unknown Artist' }}
                                 </p>
                             </div>
 
