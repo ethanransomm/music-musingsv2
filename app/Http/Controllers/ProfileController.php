@@ -59,14 +59,14 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        if ($user->profile_picture) {
-            Storage::disk('public')->delete($user->profile_picture);
+        if ($user->profile->profile_picture) {
+            Storage::disk('public')->delete($user->profile->profile_picture);
         }
 
         $path = $request->file('profile_picture')->store('profile-pictures', 'public');
         
-        $user->profile_picture = $path;
-        $user->save();
+        $user->profile->profile_picture = $path;
+        $user->profile->save();
 
         return Redirect::route('profile.edit')->with('picture-updated', true);
     }
@@ -74,10 +74,10 @@ class ProfileController extends Controller
     {
         $user = $request->user();
 
-        if ($user->profile_picture) {
-            Storage::disk('public')->delete($user->profile_picture);
-            $user->profile_picture = null;
-            $user->save();
+        if ($user->profile->profile_picture) {
+            Storage::disk('public')->delete($user->profile->profile_picture);
+            $user->profile->profile_picture = null;
+            $user->profile->save();
         }
 
         return Redirect::route('profile.edit')->with('picture-deleted', true);
@@ -86,6 +86,7 @@ class ProfileController extends Controller
     /**
      * Delete the user's account.
      */
+
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
@@ -94,8 +95,8 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        if ($user->profile_picture) {
-            Storage::disk('public')->delete($user->profile_picture);
+        if ($user->profile->profile_picture) {
+            Storage::disk('public')->delete($user->profile->profile_picture);
         }
 
         Auth::logout();
