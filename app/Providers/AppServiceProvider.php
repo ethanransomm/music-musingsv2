@@ -13,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        // Register SpotifyService as a singleton with Client ID and Secret.
         $this->app->singleton(SpotifyService::class, function ($app) {
             return new SpotifyService(
                 env('SPOTIFY_CLIENT_ID'),
