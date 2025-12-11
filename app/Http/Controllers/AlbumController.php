@@ -5,35 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Album;
 use App\Models\Artist;
-use App\Models\Song;
 
 class AlbumController extends Controller
 {
+    
+
+    
     /**
-     * Display a listing of the resource.
+     * Show the form for creating a new album with the artist relationship in tact.
+     * @return \Illuminate\View\View The view for creating an album.
      */
-   // public function index()
-    // {
-       // $albums = Album::all();
-        // return view("albums.index", ["albums"=> $albums], ["songs"=> Song::all()]);
-
-        //
-    // }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-
     
     public function create()
     {
         $artists = Artist::all();
         return view("albums.create", compact("artists"));
-        //
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created album in storage with validated parameters.
+     * @param Request $request The HTTP request to the server.
      */
     public function store(Request $request)
     {
@@ -49,34 +40,31 @@ class AlbumController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified album by it's id for ease of locating.
+     * @param mixed $id the album id.
+     * @return mixed the album data.
      */
+
     public function show($id) {
+        // Find and display album by title. 
         $album = Album::where('title', $id)->firstOrFail();
+        // Display the album view with the album data.
         return view('album', compact('album'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(string $id)
     {
-        //
+       
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+    
     }
 }

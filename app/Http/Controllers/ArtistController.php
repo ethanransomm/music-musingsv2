@@ -9,60 +9,45 @@ use Illuminate\Http\Request;
 class ArtistController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Displays a listing of the artists.
+     * @return \Illuminate\View\View The view for the artists index page.
      */
     public function index()
     {
-        //
+        // Retrieve all artists in database.
         $artists = Artist::all();
+        // Return the artists index with the artists data and album data.
         return view("artists.index", ["artists"=> $artists], ["albums"=> Album::all()]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+   
     public function create()
     {
-        //
+        
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+       
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+   
     public function edit(string $id)
     {
-        //
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        
     }
 }

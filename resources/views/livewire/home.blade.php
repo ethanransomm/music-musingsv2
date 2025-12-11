@@ -96,7 +96,7 @@
                         class="group bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 flex flex-col h-full transform hover:-translate-y-1 hover:shadow-2xl hover:shadow-green-500/10">
 
                         <div class="flex items-center space-x-4 mb-6">
-                            <a href="{{ route('profile.show', $review->user) }}"
+                            <a href="{{ route('profile.show', $review->user->id) }}"
                                 class="flex-shrink-0 transform transition-transform duration-300 hover:scale-110">
                                 @if($review->user->profile->profile_picture)
                                     <img src="{{ asset('storage/' . $review->user->profile->profile_picture) }}"
@@ -110,6 +110,14 @@
                                 @endif
                             </a>
                             <div class="flex-1 min-w-0">
+                                @if($review->user)
+                                    <a href="{{ route('profile.show', $review->user->id) }}"
+                                        class="font-semibold text-gray-200 hover:text-green-400 transition-colors duration-300 block truncate">
+                                        {{ $review->user->name }}
+                                    </a>
+                                @else
+                                    <span class="font-semibold text-gray-500 block truncate">Deleted User</span>
+                                @endif
                                 <a href="{{ route('profile.show', $review->user) }}"
                                     class="font-semibold text-gray-200 hover:text-green-400 transition-colors duration-300 block truncate">
                                     {{ $review->user->name ?? 'Deleted User' }}

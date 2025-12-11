@@ -18,7 +18,7 @@ class Home extends Component
             'featuredArtists' => Artist::latest()->take(6)->get(),
             
             'recentReviews' => Rate::with('album', 'user')
-                                   ->where('score', '>=', 8)
+                                   ->where('score', '>=', 6)
                                    ->latest()
                                    ->take(3)
                                    ->get()

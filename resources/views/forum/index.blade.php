@@ -130,6 +130,7 @@
                         @foreach($rate->comments ?? [] as $comment)
                             <div class="bg-gray-800/50 p-3 rounded-lg border border-gray-700/50 text-sm">
                                 <div class="flex items-start space-x-3">
+                                    @if($comment->user)
                                     <a href="{{ route('profile.show', $comment->user->id) }}" class="flex-shrink-0">
                                         @if($comment->user->profile->profile_picture)
                                             <img src="{{ asset('storage/' . $comment->user->profile->profile_picture) }}" 
@@ -141,13 +142,22 @@
                                             </div>
                                         @endif
                                     </a>
+                                    @else 
+                                        <div class="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-xs text-gray-400">
+                                            ?
+                                        </div>
+                                    @endif
                                     <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between mb-1">
-                                            <a href="{{ route('profile.show', $comment->user->id) }}"
-                                               class="font-bold text-green-400 text-xs hover:text-green-300 transition">
-                                                {{ $comment->user->name }}
-                                            </a>
-                                            <span class="text-gray-500 text-[10px]">{{ $comment->created_at->diffForHumans() }}</span>
+                                      <div class="flex items-center justify-between mb-1">
+                                            @if($comment->user)
+                                                <a href="{{ route('profile.show', $comment->user->id) }}"
+                                                    class="font-bold text-green-400 text-xs hover:text-green-300 transition">
+                                                    {{ $comment->user->name }}
+                                                </a>
+                                            @else
+                                                 <span class="font-bold text-gray-500 text-xs">Deleted User</span>
+                                             @endif
+                                                <span class="text-gray-500 text-[10px]">{{ $comment->created_at->diffForHumans() }}</span>
                                         </div>
 
                                         <p class="text-gray-300 mb-2">{{ $comment->content }}</p>
