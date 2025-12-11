@@ -27,14 +27,28 @@ class Album extends Model
         return $this->hasMany(Song::class, 'album_id');
     }
 
-    
+
 
     public function rates()
     {
         return $this->hasMany(Rate::class);
     }
 
+
+    public function favouritedBy()
+    {
+        return $this->belongsToMany(User::class, 'user_album_favourites', 'album_id', 'user_id')->withTimestamps();
+    }
+
+    public function isFavouritedBy($user)
+    {
+        if (!$user) return false;
+        return $this->favouritedBy()->where('user_id', $user->id)->exists();
+    }
+
 }
+
+
 
 
 

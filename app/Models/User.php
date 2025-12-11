@@ -53,23 +53,34 @@ class User extends Authenticatable
     protected static function boot()
     {
         parent::boot();
-        
+
         static::created(function ($user) {
             Profile::create(['user_id' => $user->id]);
         });
     }
 
-    public function rates(){
+    public function rates()
+    {
         return $this->hasMany(Rate::class, 'user_id');
     }
 
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany(Comment::class, 'user_id');
     }
 
-    public function profile(){
+    public function profile()
+    {
         return $this->hasOne(Profile::class);
     }
+
+
+    public function favouriteAlbums()
+    {
+        return $this->belongsToMany(Album::class, 'user_album_favourites')
+            ->withTimestamps();
+    }
+
 }
 
 

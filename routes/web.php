@@ -3,6 +3,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\RateController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FavouriteController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Album;
 use App\Livewire\AlbumIndex;
@@ -66,6 +67,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/favorites/{album}', [FavouriteController::class, 'toggle'])->name('favorites.toggle');
+    Route::get('/favorites', [FavouriteController::class, 'index'])->name('favorites.index');
 });
 
 Route::get('/user/{user}', [ProfileController::class, 'show'])->name('profile.show');

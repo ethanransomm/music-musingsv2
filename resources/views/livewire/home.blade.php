@@ -98,8 +98,8 @@
                         <div class="flex items-center space-x-4 mb-6">
                             <a href="{{ route('profile.show', $review->user) }}"
                                 class="flex-shrink-0 transform transition-transform duration-300 hover:scale-110">
-                                @if($review->user->profile_picture)
-                                    <img src="{{ asset('storage/' . $review->user->profile_picture) }}"
+                                @if($review->user->profile->profile_picture)
+                                    <img src="{{ asset('storage/' . $review->user->profile->profile_picture) }}"
                                         alt="{{ $review->user->name }}"
                                         class="w-12 h-12 rounded-full object-cover border-2 border-gray-700 group-hover:border-green-500 transition-colors duration-300 shadow-lg">
                                 @else

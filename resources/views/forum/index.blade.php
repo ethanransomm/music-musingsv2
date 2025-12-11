@@ -114,7 +114,6 @@
                         @endauth
                     </div>
 
-                    {{-- Comment Form --}}
                     <form class="comment-form" data-id="{{ $rate->id }}">
                         @csrf
                         <textarea name="body"
@@ -127,15 +126,13 @@
                         </button>
                     </form>
 
-                    {{-- Comments List --}}
                     <div id="comments-list-{{ $rate->id }}" class="mt-4 space-y-3">
                         @foreach($rate->comments ?? [] as $comment)
                             <div class="bg-gray-800/50 p-3 rounded-lg border border-gray-700/50 text-sm">
                                 <div class="flex items-start space-x-3">
-                                    {{-- Profile Picture --}}
                                     <a href="{{ route('profile.show', $comment->user->id) }}" class="flex-shrink-0">
-                                        @if($comment->user->profile_picture)
-                                            <img src="{{ asset('storage/' . $comment->user->profile_picture) }}" 
+                                        @if($comment->user->profile->profile_picture)
+                                            <img src="{{ asset('storage/' . $comment->user->profile->profile_picture) }}" 
                                                  alt="{{ $comment->user->name }}"
                                                  class="w-8 h-8 rounded-full object-cover border-2 border-gray-700 hover:border-green-500 transition">
                                         @else
@@ -144,8 +141,6 @@
                                             </div>
                                         @endif
                                     </a>
-
-                                    {{-- Comment Content --}}
                                     <div class="flex-1 min-w-0">
                                         <div class="flex items-center justify-between mb-1">
                                             <a href="{{ route('profile.show', $comment->user->id) }}"
@@ -157,7 +152,6 @@
 
                                         <p class="text-gray-300 mb-2">{{ $comment->content }}</p>
 
-                                        {{-- Edit and Delete buttons for comments --}}
                                         @auth
                                             @if(auth()->user()->user_admin == true || auth()->id() == $comment->user_id)
                                                 <div class="flex items-center space-x-3">
@@ -180,7 +174,6 @@
                                             @endif
                                         @endauth
 
-                                        {{-- Edit Form (hidden by default) --}}
                                         <div id="edit-comment-{{ $comment->id }}" class="hidden mt-2">
                                             <form class="edit-comment-form" data-comment-id="{{ $comment->id }}">
                                                 @csrf
@@ -215,7 +208,6 @@
         document.addEventListener('DOMContentLoaded', function () {
             console.log('Comments script loaded.');
 
-            // Post new comments
             document.querySelectorAll('.comment-form').forEach(form => {
                 form.addEventListener('submit', async function (e) {
                     e.preventDefault();
@@ -253,7 +245,6 @@
                 });
             });
 
-            // Edit comments
             document.querySelectorAll('.edit-comment-form').forEach(form => {
                 form.addEventListener('submit', async function (e) {
                     e.preventDefault();
@@ -277,7 +268,7 @@
                         });
 
                         if (response.ok) {
-                            location.reload(); // Reload to show updated comment
+                            location.reload();
                         } else {
                             alert('Error updating comment');
                         }
@@ -289,7 +280,6 @@
             });
         });
 
-        // Toggle edit form visibility
         function toggleEditComment(commentId) {
             const editForm = document.getElementById(`edit-comment-${commentId}`);
             editForm.classList.toggle('hidden');

@@ -26,7 +26,7 @@ class ProfileController extends Controller
 
     public function show(User $user): View
     {
-        $user->load(['rates.album', 'comments.rate.album', 'profile']);
+        $user->load(['rates.album', 'comments.rate.album', 'profile', 'favouriteAlbums.artist']);
 
         return view('profile.show', [
             'user' => $user,
