@@ -12,12 +12,14 @@ class Artist extends Model
 
     use HasFactory;
 
+    // Model fillable attributes.
     protected $fillable = [
         'artist_name',
         'genre',
         'image_url',
     ];
 
+    // An artist has many albums.
     public function albums()
     {
         return $this->hasMany(Album::class);

@@ -9,17 +9,20 @@ use App\Models\Rate;
 class Comment extends Model
 {
 
+    // Model fillable attributes.
     protected $fillable = [
         'content',
         'user_id',
         'rate_id',
     ];
 
+    // A comment belongs to a rate.
     public function rate()
     {
         return $this->belongsTo(Rate::class, 'rate_id');
     }
 
+    // A comment belongs to a user.
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

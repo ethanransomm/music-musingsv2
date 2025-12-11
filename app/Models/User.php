@@ -50,6 +50,7 @@ class User extends Authenticatable
     }
 
 
+    // Boot method to create profile on user instantiation.
     protected static function boot()
     {
         parent::boot();
@@ -59,22 +60,26 @@ class User extends Authenticatable
         });
     }
 
+    // A user has many ratingss.
     public function rates()
     {
         return $this->hasMany(Rate::class, 'user_id');
     }
 
+    // A user has many comments.
     public function comments()
     {
         return $this->hasMany(Comment::class, 'user_id');
     }
 
+    // A user has one profile.
     public function profile()
     {
         return $this->hasOne(Profile::class);
     }
 
 
+    // A user has many favourite albums.
     public function favouriteAlbums()
     {
         return $this->belongsToMany(Album::class, 'user_album_favourites')

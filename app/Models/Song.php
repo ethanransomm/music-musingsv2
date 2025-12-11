@@ -9,6 +9,7 @@ class Song extends Model
 {
     use HasFactory;
 
+    // Model fillable attributes.
     protected $fillable = [
         'title',
         'album_id',
@@ -16,11 +17,13 @@ class Song extends Model
         'track_number',
     ];
 
+    // A song belongs to an album.
     public function album()
     {
         return $this->belongsTo(Album::class);
     }
 
+    // A song has one artist through album.
     public function artist()
     {
         return $this->hasOneThrough(
