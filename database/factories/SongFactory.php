@@ -8,23 +8,28 @@ use App\Models\Song;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Song>
  */
-class SongFactory extends Factory
-{
 
-    protected $model = Song::class; 
+// Note:
+// This factory was used to generate sample song data during the beginning stages of this coursework.
+// As it is no longer needed, it has been commented out to prevent usage.
+
+// class SongFactory extends Factory
+// {
+
+   // protected $model = Song::class; 
 
 
-    public function definition(): array
-    {
+    // public function definition(): array
+    // {
 
-        return [
-                "title"=> fake()->name(),
-                "duration"=> fake()->numberBetween(60, 350),
-                "album_id"=> fake()->numberBetween(1,50),
-                ];
+       // return [
+         //       "title"=> fake()->name(),
+           //     "duration"=> fake()->numberBetween(60, 350),
+             //   "album_id"=> fake()->numberBetween(1,50),
+               // ];
             //
-    }
-}
+    // }
+// }
 
 
 
