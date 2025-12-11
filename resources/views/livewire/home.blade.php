@@ -118,10 +118,7 @@
                                 @else
                                     <span class="font-semibold text-gray-500 block truncate">Deleted User</span>
                                 @endif
-                                <a href="{{ route('profile.show', $review->user) }}"
-                                    class="font-semibold text-gray-200 hover:text-green-400 transition-colors duration-300 block truncate">
-                                    {{ $review->user->name ?? 'Deleted User' }}
-                                </a>
+                                
                                 <div class="text-sm text-gray-400 font-light">
                                     rated
                                     <a href="{{ route('album.show', $review->album->id) }}"

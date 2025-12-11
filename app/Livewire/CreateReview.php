@@ -54,7 +54,7 @@ class CreateReview extends Component
         $this->score = $val;
     }
     /**
-     * Saves the validated  review to the database.
+     * Saves the validated review to the database.
      * @return \Illuminate\Http\RedirectResponse Redirects to forum index with success message.
      */
     public function save()
