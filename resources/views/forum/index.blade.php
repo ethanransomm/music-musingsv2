@@ -26,6 +26,12 @@
             </div>
         @endif
 
+        @if(session('error'))
+            <div class="mb-6 bg-red-900/50 border border-red-500 text-red-400 px-4 py-3 rounded-lg">
+                {{ session('error') }}
+            </div>
+        @endif
+
         @if ($rates->isEmpty())
             <div class="text-center p-12 bg-gray-800 rounded-xl border border-gray-700 shadow-sm">
                 <div class="inline-block p-4 rounded-full bg-gray-700 mb-4">
