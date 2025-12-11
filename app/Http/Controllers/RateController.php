@@ -60,7 +60,6 @@ class RateController extends Controller
         // Redirect back with error if a rate already exists for this user and the album selected.                         
         if ($existingRate) {
             return redirect()->back()
-                ->withInput()
                 ->withErrors(['album_id' => 'You have already reviewed this album.']);
         }
 

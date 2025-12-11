@@ -99,7 +99,7 @@
                             <a href="{{ route('profile.show', $review->user->id) }}"
                                 class="flex-shrink-0 transform transition-transform duration-300 hover:scale-110">
                                 @if($review->user->profile->profile_picture)
-                                    <img src="{{ asset('storage/' . $review->user->profile->profile_picture) }}"
+                                    <img src="{{ asset(path: 'storage/' . $review->user->profile->profile_picture) }}"
                                         alt="{{ $review->user->name }}"
                                         class="w-12 h-12 rounded-full object-cover border-2 border-gray-700 group-hover:border-green-500 transition-colors duration-300 shadow-lg">
                                 @else
@@ -137,9 +137,9 @@
                             </div>
 
                             @if($review->title)
-                                <h4 class="text-gray-100 font-bold text-lg line-clamp-1 leading-tight">
+                                <h3 class="text-gray-100 font-bold text-lg line-clamp-1 leading-tight">
                                     {{ $review->title }}
-                                </h4>
+                                </h3>
                             @endif
 
                             <p class="text-gray-300 text-sm line-clamp-3 leading-relaxed font-light italic">
@@ -159,7 +159,7 @@
             <div class="flex items-center justify-between pb-4 border-b border-gray-800">
                 <div>
                     <h2 class="text-4xl font-bold text-white mb-2">Featured Artists</h2>
-                    <p class="text-gray-400 font-light">Explore music from talented artists</p>
+                    <p class="text-gray-400 font-light">Explore music from our artists catalogue</p>
                 </div>
                 <a href="{{ route('artists.index') }}"
                     class="group text-sm font-semibold text-gray-400 hover:text-green-400 uppercase tracking-widest transition-all duration-300 flex items-center space-x-2">
