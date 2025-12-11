@@ -9,6 +9,7 @@ return new class extends Migration
    
     public function up(): void
     {
+        // Create albums table with relevant fields and foreign key.
         Schema::create('albums', function (Blueprint $table) {
             $table->id();
             $table->timestamps();

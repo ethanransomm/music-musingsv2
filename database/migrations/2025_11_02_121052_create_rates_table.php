@@ -9,6 +9,7 @@ return new class extends Migration
     
     public function up(): void
     {
+        // Create rates table to store user ratings for albums.
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
             // Foreign Key for the user rating an album 

@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Create user_album_favourites table for favourited albums.
         Schema::create('user_album_favourites', function (Blueprint $table) {
             $table->id();
+            // Foreign keys for the user favouriting an album.
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            // Foreign Key for the album being favourited.
             $table->foreignId('album_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-            
+            // One user can only favourite one album once.
             $table->unique(['user_id', 'album_id']);
         });
     }

@@ -8,6 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // Add title column to rates table to store the titles for user ratings.
         Schema::table('rates', function (Blueprint $table) {
             $table->string('title')->nullable()->after('album_id');
         });

@@ -11,6 +11,7 @@ return new class extends Migration
      */
    public function up()
 {
+    // Create profiles table to store profile pictures and bio values linked to users through user_id.
     Schema::create('profiles', function (Blueprint $table) {
         $table->id();
         $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');

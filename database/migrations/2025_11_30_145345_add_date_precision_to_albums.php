@@ -10,6 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
+        // Add release date in MM, DD, YYYY format column to albums table to specify precision of release date.
         Schema::table('albums', function (Blueprint $table) {
             $table->string('release_date_precision')->default('day')->after('release_date');
         });

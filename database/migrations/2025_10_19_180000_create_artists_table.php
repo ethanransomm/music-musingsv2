@@ -9,6 +9,7 @@ return new class extends Migration
 
     public function up(): void
     {
+        // Create artists table with relevant fields.
         Schema::create('artists', function (Blueprint $table) {
             $table->id();
             $table->timestamps();

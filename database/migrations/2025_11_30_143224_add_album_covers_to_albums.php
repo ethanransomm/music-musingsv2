@@ -10,6 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
+        // Add cover_url column to albums table to store album cover image URLs.
         Schema::table('albums', function (Blueprint $table) {
             $table->string('cover_url')->nullable()->after('genre');
         });

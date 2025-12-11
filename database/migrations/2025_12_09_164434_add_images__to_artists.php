@@ -8,6 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // Add image_url column to artists table to store artist image URLs obtained from Spotify API.
         Schema::table('artists', function (Blueprint $table) {
             $table->string('image_url')->nullable()->after('artist_name');
         });

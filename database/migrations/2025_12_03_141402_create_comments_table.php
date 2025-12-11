@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Create comments table with relevant fields and foreign keys.
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
