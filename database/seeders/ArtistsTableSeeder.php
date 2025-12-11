@@ -7,7 +7,12 @@ use App\Models\Artist;
 use App\Models\Song;
 use App\Models\Album;
 
-class ArtistsTableSeeder extends Seeder
+// Note: The seeder code was used to generate the artists table with initial data for 
+// for the beginning stages of this coursework. It has now been commented out as the only seeder being used is
+// SpotifySeeder.
+
+
+/* class ArtistsTableSeeder extends Seeder
 {
     // Seed the Artist table with one-to-many relationship for Album and Songs
     public function run(): void
@@ -21,7 +26,7 @@ class ArtistsTableSeeder extends Seeder
             )
             ->create();
     }
-}
+} */
 
 
 

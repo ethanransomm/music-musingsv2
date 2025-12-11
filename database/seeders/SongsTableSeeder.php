@@ -6,6 +6,10 @@ use Illuminate\Database\Seeder;
 use App\Models\Song;
 use App\Models\Album;
 
+// Note: The seeder code was used to generate the songs table with initial data for 
+// for the beginning stages of this coursework. It has now been commented out as the only seeder being used is
+// SpotifySeeder.
+
 
 class SongsTableSeeder extends Seeder
 {

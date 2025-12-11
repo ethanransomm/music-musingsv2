@@ -7,12 +7,16 @@ use Illuminate\Database\Seeder;
 use App\Models\Album;
 use App\Models\Artist;
 
-class AlbumsTableSeeder extends Seeder
+// Note: The seeder code was used to generate the albums table with initial data for 
+// for the beginning stages of this coursework. It has now been commented out as the only seeder being used is
+// SpotifySeeder.
+
+/* class AlbumsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+   /*  public function run(): void
     {
 
          if (Album::count() > 0) { 
@@ -29,10 +33,10 @@ class AlbumsTableSeeder extends Seeder
             'genre' => 'Post-punk revival',
              ]);
             }
+ */
 
 
-
-
+/* 
             $artist= Artist::where('artist_name', 'The Strokes')->first();
 
             if ($artist) {
@@ -80,4 +84,4 @@ class AlbumsTableSeeder extends Seeder
 
 
         }
-    }      
+    }       */
