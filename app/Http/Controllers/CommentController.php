@@ -92,8 +92,8 @@ class CommentController extends Controller
         // Locate comment by it's ID.
         $comment = Comment::findOrFail($id);
 
-        // Authorise that the user is the person who commented or an admin.
-        if (auth()->id() !== $comment->user_id && !auth()->user()->user_admin) {
+        // Authorise that the user is an admin.
+        if (!auth()->user()->user_admin) {
             abort(403, 'Unauthorized action.');
         }
 

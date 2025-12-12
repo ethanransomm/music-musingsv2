@@ -105,16 +105,18 @@
                                        class="text-gray-400 hover:text-green-400 text-xs font-bold uppercase tracking-wider transition duration-150">
                                         Edit
                                     </a>
-                                    <form action="{{ url('/forum/' . $rate->id) }}" method="POST"
-                                        onsubmit="return confirm('Are you sure you want to delete this review?');"
-                                        class="inline">
-                                        @csrf
-                                        @method('DELETE')
+                                    @if(auth()->user()->user_admin == true)
+                                        <form action="{{ url('/forum/' . $rate->id) }}" method="POST"
+                                                onsubmit="return confirm('Are you sure you want to delete this review?');"
+                                                class="inline">
+                                            @csrf
+                                            @method('DELETE')
                                         <button type="submit"
                                             class="text-red-500 hover:text-red-400 text-xs font-bold uppercase tracking-wider transition duration-150">
                                             Delete
                                         </button>
                                     </form>
+                                    @endif
                                 </div>
                             @endif
                         @endauth
@@ -176,19 +178,23 @@
                                                             class="text-gray-400 hover:text-green-400 text-[10px] font-bold uppercase transition">
                                                         Edit
                                                     </button>
-                                                    <form action="{{ url('/forum/comments/' . $comment->id) }}" method="POST"
-                                                        onsubmit="return confirm('Delete this comment?');"
-                                                        class="inline">
-                                                        @csrf
-                                                        @method('DELETE')
+
+                                                    @if(auth()->user()->user_admin == true)
+                                                        <form action="{{ url('/forum/' . $rate->id) }}" method="POST"
+                                                                onsubmit="return confirm('Are you sure you want to delete this comment');"
+                                                                class="inline">
+                                                            @csrf
+                                                            @method('DELETE')
                                                         <button type="submit"
-                                                            class="text-red-500 hover:text-red-400 text-[10px] font-bold uppercase transition">
+                                                            class="text-red-500 hover:text-red-400 text-xs font-bold uppercase tracking-wider transition duration-150">
                                                             Delete
                                                         </button>
-                                                    </form>
+                                                         </form>
+                                                    @endif
                                                 </div>
                                             @endif
                                         @endauth
+                                    </div>
 
                                         <div id="edit-comment-{{ $comment->id }}" class="hidden mt-2">
                                             <form class="edit-comment-form" data-comment-id="{{ $comment->id }}">

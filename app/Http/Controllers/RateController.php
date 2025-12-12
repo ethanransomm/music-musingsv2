@@ -160,8 +160,8 @@ class RateController extends Controller
            return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        // If the user's not an admin and didn't create the rate, forbid deletion.
-        if ($user->user_admin !== true && $user->id !== $rate->user_id) {
+        // If the user's not an admin forbid deletion.
+        if ($user->user_admin !== true) {
             return response()->json(['error' => 'Forbidden.'], 403);
         }
 
