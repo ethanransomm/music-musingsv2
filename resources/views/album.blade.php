@@ -70,13 +70,13 @@
                                 @if($album->isFavouritedBy(auth()->user()))
                                     bg-red-600 hover:bg-red-700 text-white
                                 @else
-                                    bg-purple-600 hover:bg-purple-700 text-white
+                                    bg-gray-600 hover:bg-gray-700 text-white
                                 @endif
                             ">
                                                 @if($album->isFavouritedBy(auth()->user()))
-                                                    ❤️ Remove from Favorites
+                                                    🖤 Remove from Favorites
                                                 @else
-                                                    🤍 Add to Favorites
+                                                    💜 Add to Favorites
                                                 @endif
                                             </button>
                                         </form>

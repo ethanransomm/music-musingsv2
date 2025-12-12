@@ -1,7 +1,6 @@
 <div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
 
-        {{-- Hero Section --}}
         <div class="text-center space-y-6 py-24">
             <h1 class="text-7xl md:text-8xl font-black text-white tracking-tight mb-6 leading-none">
                 Music <span
@@ -23,7 +22,6 @@
             </div>
         </div>
 
-        {{-- Featured Albums Section --}}
         <section class="space-y-8">
             <div class="flex items-center justify-between pb-4 border-b border-gray-800">
                 <div>

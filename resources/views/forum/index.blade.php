@@ -96,8 +96,7 @@
                                 {{ $rate->created_at->diffForHumans() }}
                             </span>
                         </div>
-
-                        {{-- Edit and Delete buttons --}}
+                        
                         @auth
                             @if(auth()->user()->user_admin == true || auth()->id() == $rate->user_id)
                                 <div class="mt-3 pt-3 border-t border-gray-700 flex items-center space-x-4">
