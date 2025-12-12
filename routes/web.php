@@ -32,24 +32,25 @@ Route::get('/album/{album}', function (Album $album) {
 })->name('album.show');
 
 /** Forum Routes */
-Route::get('/forum', [RateController::class, 'index'])->name('forum.index');
 
-Route::post('/forum/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
-
-Route::get('/forum/{id}/edit', [RateController::class, 'edit'])->name('forum.edit');
-
-Route::patch('/forum/{id}', [RateController::class, 'update'])->name('forum.update');
-Route::delete('/forum/{id}', [RateController::class, 'delete']);
+Route::get('/forum/create', function () {
+    return view('forum.create');
+})->name('forum.create');
 
 Route::post('/forum/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
 
 Route::delete('/forum/comments/{id}', [CommentController::class, 'delete'])->name('comments.delete');
 
-Route::patch('/comments/{id}', [CommentController::class, 'update'])->name('comments.update')->middleware('auth');
+Route::get('/forum', [RateController::class, 'index'])->name('forum.index');
 
-Route::get('/forum/create', function () {
-    return view('forum.create');
-})->name('forum.create');
+Route::get('/forum/{id}/edit', [RateController::class, 'edit'])->name('forum.edit');
+
+Route::patch('/forum/{id}', [RateController::class, 'update'])->name('forum.update');
+Route::delete('/forum/{id}', [RateController::class, 'delete'])->name('rate.delete');
+
+Route::post('/forum/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
+
+Route::patch('/comments/{id}', [CommentController::class, 'update'])->name('comments.update')->middleware('auth');
 
 /** Notification Route */
 Route::post('/notifications/mark-all-read', function (Request $request) {

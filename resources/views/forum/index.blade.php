@@ -106,7 +106,7 @@
                                         Edit
                                     </a>
                                     @if(auth()->user()->user_admin == true)
-                                        <form action="{{ url('/forum/' . $rate->id) }}" method="POST"
+                                       <form action="{{ route('rate.delete', $rate->id) }}" method="POST"
                                                 onsubmit="return confirm('Are you sure you want to delete this review?');"
                                                 class="inline">
                                             @csrf
@@ -180,7 +180,7 @@
                                                     </button>
 
                                                     @if(auth()->user()->user_admin == true)
-                                                        <form action="{{ url('/forum/' . $rate->id) }}" method="POST"
+                                                        <form action="{{ route('comments.delete', $comment->id) }}" method="POST"
                                                                 onsubmit="return confirm('Are you sure you want to delete this comment');"
                                                                 class="inline">
                                                             @csrf
