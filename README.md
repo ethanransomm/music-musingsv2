@@ -7,55 +7,51 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Music Musings
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Music Musings is a music review website designed in a similar vein to Rate Your Music. Developed as an interactive prototype for the Web Application Development module (CSC-348 Assignment 3b), the platform allows a community of music enthusiasts to browse and rate their favorite albums. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Features
 
-## Learning Laravel
+* **Album Reviews & Ratings:** Users can search for albums and submit detailed reviews containing a title, written comment, and a score out of 10.
+* **Spotify API Integration:** Utilizes the Spotify Web API to dynamically search for artists, retrieve album artwork, and fetch accurate track listings.
+* **User Authentication & Profiles:** Users must create an account and log in to leave a review. Once registered, users can favorite albums and manage their personal profiles.
+* **Community Interaction:** Features a community forum showing recent reviews. Users can read community posts, and those with admin privileges can moderate comments and reviews.
+* **Accessibility Focused:** Evaluated against Web Content Accessibility Guidelines (WCAG) 2. The interface utilizes alternative text for screen readers and passes WCAG AA and AAA color contrast standards.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Tech Stack
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+This application is built upon the Model-View-Controller (MVC) architecture, utilizing the following technologies:
 
-## Laravel Sponsors
+* **Backend Framework:** Laravel (PHP).
+* **Frontend:** Tailwind CSS for responsive styling and Laravel Livewire for dynamic search components.
+* **Database:** Eloquent ORM, handling complex entity relationships between Artists, Albums, Songs, Users, and Reviews.
+* **External Services:** Spotify Web API (managed via a Laravel Service Container to handle dependency injection and authentication tokens).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## Setup & Installation Instructions
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+To run this project locally, you will need to utilize Laravel Sail and provide your own Spotify Developer credentials.
 
-## Contributing
+1. **Clone the repository** and install dependencies.
+2. **Configure Environment Variables:** Duplicate the `.env.example` file to `.env`. For the application's search features and database seeders to function, you must register an app with Spotify and add your credentials:
+   ```env
+   SPOTIFY_CLIENT_ID=your_client_id_here
+   SPOTIFY_CLIENT_SECRET=your_client_secret_here
+   ```
+   > **Note:** The `AppServiceProvider` registers these keys to authenticate with the API.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+3. **Start the Application:** Boot up the Docker containers using Laravel Sail: 
+   ```bash
+   sail up -d
+   ```
+4. **Compile Frontend Assets:** It is important that you compile the assets to view the website with the correct styling: 
+   ```bash
+   sail npm run dev
+   ```
+5. **Run Migrations & Seeders:** Run the database migrations and seeders. The custom `SpotifySeeder` will automatically connect to the Spotify API and populate the database with a selection of target artists, albums, and tracks.
