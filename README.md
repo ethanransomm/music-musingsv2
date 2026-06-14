@@ -16,17 +16,17 @@
 
 
 
-Music Musings is a music review website designed in a similar vein to Rate Your Music. Developed as an interactive prototype for the Web Application Development module (CSC-348 Assignment 3b), the platform allows a community of music enthusiasts to browse and rate their favorite albums. 
+Music Musings is a music review website designed in a similar vein to Rate Your Music with adjustments made to enhance the UX of the existing Rate Your Music site. Developed as an interactive prototype for the Web Application Development module (CSC-348 Assignment 3b) during my undergraduate study at Swansea University, the platform allows a community of music enthusiasts to browse and rate their favourite albums. 
 
 ---
 
 ## Features
 
 * **Album Reviews & Ratings:** Users can search for albums and submit detailed reviews containing a title, written comment, and a score out of 10.
-* **Spotify API Integration:** Utilizes the Spotify Web API to dynamically search for artists, retrieve album artwork, and fetch accurate track listings.
-* **User Authentication & Profiles:** Users must create an account and log in to leave a review. Once registered, users can favorite albums and manage their personal profiles.
+* **Spotify API Integration:** Utilises the Spotify Web API to dynamically search for artists, retrieve album artwork, and fetch accurate track listings.
+* **User Authentication & Profiles:** Users must create an account and log in to leave a review. Once registered, users can favourite albums and manage their personal profiles.
 * **Community Interaction:** Features a community forum showing recent reviews. Users can read community posts, and those with admin privileges can moderate comments and reviews.
-* **Accessibility Focused:** Evaluated against Web Content Accessibility Guidelines (WCAG) 2. The interface utilizes alternative text for screen readers and passes WCAG AA and AAA color contrast standards.
+* **Accessibility Focused:** Evaluated against Web Content Accessibility Guidelines (WCAG) 2. The interface utilises alternative text for screen readers and passes WCAG AA and AAA color contrast standards.
 
 ---
 
@@ -43,7 +43,7 @@ This application is built upon the Model-View-Controller (MVC) architecture, uti
 
 ## Setup & Installation Instructions
 
-To run this project locally, you will need to utilize Laravel Sail and provide your own Spotify Developer credentials.
+To run this project locally, you will need to utilise Laravel Sail and provide your own Spotify Developer credentials.
 
 1. **Clone the repository** and install dependencies.
 2. **Configure Environment Variables:** Duplicate the `.env.example` file to `.env`. For the application's search features and database seeders to function, you must register an app with Spotify and add your credentials:
